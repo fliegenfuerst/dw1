@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+<title>Move Learning</title>
+		<link rel="stylesheet" href="css/eliminate.css" id="style" type="text/css">
+		<link rel="stylesheet" href="css/style.css" id="style" type="text/css">
+</head>
+<body>
+<div id="container">
+	<span id="partner">
+		<div class="table">
+			<span class="row">
+				<span class="cell" id="partnerName"></span>
+				<span class="cell" id="partnerSprite"></span>
+				<span class="cell" id="partnerModel"></span>
+			</span>
+		</div>
+		<div class="table" id="partnerTop">
+			<span class="row"><span class="cell">Type:</span><span class="cell" id="partnerType"></span></span>
+			<span class="row"><span class="cell">Level:</span><span class="cell" id="partnerLevel"></span></span>
+			<span class="row"><span class="cell">Nature1:</span><span class="cell" id="partnerSpec1"></span></span>
+			<span class="row"><span class="cell">Nature2:</span><span class="cell" id="partnerSpec2"></span></span>
+			<span class="row"><span class="cell">Nature3:</span><span class="cell" id="partnerSpec3"></span></span>
+			<span class="row"><span class="cell">HP:</span><span class="cell"><input type="number" id="partnerHP" value="0" min="0" max="9999" step="1" onkeypress="return isNumberKey(event)" onkeyup="checkMax(event)" oninput="update()" onmouseup="hM.updateStats()"></span></span>
+			<span class="row"><span class="cell">Defense:</span><span class="cell"><input type="number" id="partnerDefense" value="0" min="0" max="999" step="1" onkeypress="return isNumberKey(event)" onkeyup="checkMax(event)" oninput="update()" onmouseup="hM.updateStats()"></span></span>
+		</div>
+		<div id="partnerMoves" class="table"></div>
+	</span>
+	<div id="detailDiv">
+	<span id="moveTable" class="table"></span>
+		<h3 id="moveTitle"></h3>
+		<div class="tab">
+			<button class="tablinks" onclick="showTab(event, 'learn')" id="defaultOpen">Enemies</button>
+			<button class="tablinks" onclick="showTab(event, 'details')">Move Details</button>
+			<button class="tablinks" onclick="showTab(event, 'brainLearning')">Brain Learning</button>
+		</div>
+		<div id="brainLearning" class="tabcontent">
+			<div id="infoBrains">
+				your digimon will learn moves based on RNG through brain training over 150, 250, 350, 450, 550, 650, 750, 800, 850, 900 and 950.
+				<br><br>
+				they will be learned in the following order:
+				<br><br>
+				1. all moves from the digimons first nature<br>
+				2. if present the 1 tier move of the second nature<br>
+				3. if present the 1 tier move of the third nature<br>
+				3. the moves of the second nature<br>
+				4. the moves of the third nature
+				<br><br>
+				moves with 0% chance need to be learned in battle in order to go on learning moves in that nature, if other learnable moves in other natures remain the learning will continue with those.
+				<br><br>
+				for your current digimon this means (moves in red are blocked by a 0% chance move you will have to go learn in battle):
+				<br><br>
+			</div>
+			<div id="brainList"></div>
+		</div>
+		
+		<div id="details" class="tabcontent">
+		<div id="moveDetails" class="table">
+			<span class="row">
+				<span class="cell"></span>
+			</span>
+		</div>
+		</div>
+		<div id="learn" class="tabcontent">
+			<div id="enemyOptions">
+			sort by
+			</div>
+			<div id="regular" class="table"></div>
+			<div id="story"></div>
+		</div>
+	</div>
+</div>
+		<script type="text/javascript" src="js/HashManager.js"></script>
+		<script type="text/javascript" src="js/damageCalc.js"></script>
+		<script type="text/javascript" src="js/raise.js"></script>
+		<script type="text/javascript" src="js/moves.js"></script>
+		<script type="text/javascript" src="js/maps.js"></script>
+		<script type="text/javascript" src="js/items.js"></script>
+		<script type="text/javascript" src="js/enemies.js"></script>
+		<script type="text/javascript" src="js/tiers.js"></script>
+		<script type="text/javascript" src="js/stats.js"></script>
+		<script type="text/javascript" src="js/ToolBox.js"></script>
+		<script type="text/javascript" src="js/GUIManager.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

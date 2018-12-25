@@ -1,0 +1,178 @@
+<html>
+<head>
+<style>
+img{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;image-rendering:optimize-contrast;-ms-interpolation-mode:nearest-neighbor;}
+.itemSprite{
+height:48px;
+width:48px;
+}
+.itemSpawnInfo{
+}
+.itemText{
+}
+.itemLeft{
+float:right;
+}
+.itemRight{
+float:left;
+}
+table{
+border:solid;
+}
+#container{
+display:inline;
+position: absolute;
+}
+#left{
+float:left;
+top:0;
+left:0;
+max-width:200px;
+}
+#right{
+float:right;
+top:0;
+left:432px;
+max-width:200px;
+}
+#canvasSpan{
+left:200px;
+top:0;
+</style>
+<body>
+<div id="container">
+<div id="mapTitle"></div>
+<span id="left"></span>
+<span id="canvasSpan">
+<canvas id="c" width="432" height="400"></canvas>
+<span id="right">
+
+</span>
+</div>
+<script type="text/javascript" src="js/toolbox.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript" src="js/items.js"></script>
+<script>
+var tb=new toolbox();
+var canvas = document.getElementById('c');
+
+var ctx = canvas.getContext('2d');
+
+var img = document.createElement('IMG');
+
+displayMap(maps[40]);
+function displayMap(map){
+	left.innerHTML='';
+	right.innerHTML='';
+	ctx.clearRect(0, 0, 432, 400);
+	//mapTitle.innerHTML=map.name+" - "+map.description;
+var offset=16;
+// When the image is loaded, draw it
+mapItems=map.items;
+/*var items=[{item:"shroom",locX:200,locY:200,sprite:"img/items/item (1).png",chance:20},{item:"shroom",locX:20,locY:20,sprite:"img/items/item (1).png",chance:20},{item:"shroom",locX:-100,locY:100,sprite:"img/items/item (1).png",chance:20},{item:"shroom",locX:10,locY:10,sprite:"img/items/item (1).png",chance:20}];*/
+img.onload = function () {
+    ctx.drawImage(img, offset, 0);
+mapItems.sort(function(a,b){return a.locY - b.locY;});
+console.log(items);
+var indexRight=0;
+for(var i=0;i<mapItems.length;i++){
+x=mapItems[i].locX*4+2;
+y=mapItems[i].locY*4+2;
+/* for chests:
+x=200+mapItems[i].locX/15*2;
+y=200+mapItems[i].locY/15*2;
+*/
+ctx.beginPath();
+ctx.strokeStyle="#FF0000";
+ctx.lineWidth = 2;
+ctx.moveTo(offset+x-8,y-8);
+ctx.lineTo(offset+x+8,y+8);
+ctx.moveTo(offset+x+8,y-8);
+ctx.lineTo(offset+x-8,y+8);
+
+ctx.moveTo(offset+x,y);
+if(mapItems[i].locX>50) {
+ctx.lineTo(offset*2+400,indexRight*60+30);
+right.innerHTML+=getItemInfo(mapItems[i],true);
+indexRight++;
+}else{
+ctx.lineTo(0,(i-indexRight)*60+30);
+
+left.innerHTML+=getItemInfo(mapItems[i],false);
+}
+ctx.stroke(); 
+}
+}
+img.src = "https://www.phoenix-staffel.de/digimon/DigimonWorld/CollisionMaps/"+map.internalName+".MAP.PNG";
+}
+
+function getItemInfo(item,right){
+var ret='';
+if(right){
+ret+='<table class="itemRight">';
+}else{
+ret+='<table class="itemLeft">';
+}
+ret+='<tr class="itemSpawnInfo"><td rowspan="2">';
+var itemID=1+parseInt(items.find(x => x.name.eng==item.item).id,16);
+ret+='<img class="itemSprite" src="img/itemSprites/item_'+tb.addZeros(itemID,3)+'.png"/>';
+ret+='</td><td class="itemText">'+item.item+'</td></tr><tr>';
+ret+='<td>'+item.chance+'% chance</td></tr></table>';
+return ret;
+}
+
+var mapSelect=[];
+for(var i=0;i<maps.length;i++){
+	if(maps[i].items.length>0) mapSelect.push({value:maps[i].internalName,text:maps[i].name+" - "+maps[i].description});
+}
+mapSelect.sort();
+mapTitle.appendChild(tb.getSelect("mapSelect",mapSelect,loadSelectedMap));
+function loadSelectedMap(){
+	displayMap(maps.find(x => x.internalName==this.value));
+}
+
+// Specify the src to load the image
+
+//sort items by y coordinates
+//split items up between left and right
+/*for(var j=0;j<128;j++){
+	var z=document.createElement('IMG');
+	z.src="img/itemNew/item_"+tb.addZeros(j+1,3)+".png"
+	container.appendChild(z);
+if(j>61||(j>43&&j<48)||j<11||(j>15&&j<43)){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_"+tb.addZeros(j+1,3)+".png");
+}else 
+if(j>43&&j<47){
+
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_"+tb.addZeros(j+2,3)+".png");
+}
+
+if(j>10&&j<13){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_"+tb.addZeros(j+3,3)+".png");
+//+2
+}else if(j==13){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_016.png");
+//=15
+}else if(j>13&&j<16){
+
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_"+tb.addZeros(j-1,3)+".png");
+//-2
+}else if(j==49){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_056.png");
+//=55
+}else if(j==54){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_045.png");
+//=44
+}else if(j==56){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_051.png");
+//=50
+}else if(j==50){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_057.png");
+//=56
+}else if(j==55){
+tb.saveImageFile("img/items/item ("+(j+1)+").png","item_050.png");*/
+//=49
+</script>
+
+</body>
+</html>

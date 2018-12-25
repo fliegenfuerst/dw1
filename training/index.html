@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>Digimon World 1 Training Calculator</title>
+</head>
+<body>
+	<h1>Digimon World 1 Training Calculator</h1>
+	<span>
+		<div>Where are we training today?</div>
+		<table>
+			<tr>
+				<td><label>Green Gym<br /> <input class="radioBtnGym"
+						type='checkbox' name='checkbox' id="greenGym"
+						onclick='radioBtn(this);'>
+				</label></td>
+				<td><label>Beetle Land<br /> <input
+						class="radioBtnGym" type='checkbox' name='checkbox' id="beetleGym"
+						onclick='radioBtn(this);'>
+				</label></td>
+				<td><label>Leomon<br /> <input class="radioBtnGym"
+						type='checkbox' name='checkbox' id="leomonGym"
+						onclick='radioBtn(this);'>
+				</label></td>
+				<td><label>Ice Sanctuary<br /> <input
+						class="radioBtnGym" type='checkbox' name='checkbox'
+						id="iceSanctGym" onclick='radioBtn(this);'>
+				</label></td>
+				<td><label>Cherrymon<br /> <input class="radioBtnGym"
+						type='checkbox' name='checkbox' id="cherrymonGym"
+						onclick='radioBtn(this);'>
+				</label></td>
+				<td><label>Trash Mountain<br /> <input
+						class="radioBtnGym" type='checkbox' name='checkbox'
+						id="trashMTGym" onclick='radioBtn(this);'>
+				</label></td>
+			</tr>
+		</table>
+		<hr>
+		<div id="babyTraining">
+				<p>
+					check stats that you have trained at least<br />10 times with a
+					fresh/in-training Digimon<br />(brains get upgraded alongside MP,
+					this is a bug in the game)
+				</p>
+
+			<table>
+				<tr>
+					<td><label>HP<br /> <input type='checkbox'
+							name='checkbox' id="hp" onclick='setBoost(this);'>
+					</label></td>
+					<td><label>MP<br /> <input type='checkbox'
+							name='checkbox' id="mp" onclick='setBoost(this);'>
+					</label></td>
+					<td><label>OFF<br /> <input type='checkbox'
+							name='checkbox' id="off" onclick='setBoost(this);'>
+					</label></td>
+					<td><label>DEF<br /> <input type='checkbox'
+							name='checkbox' id="def" onclick='setBoost(this);'>
+					</label></td>
+					<td><label>SPD<br /> <input type='checkbox'
+							name='checkbox' id="spd" onclick='setBoost(this);'>
+					</label></td>
+				</tr>
+			</table>
+		<hr>
+		</div>
+		<div>
+			<p>
+				Did you recruit Kuwaga- and Kabuterimon? <br />Is the
+				Trainingmanual in your inventory? <br />
+				(hover mouse over boost to get more information)
+			</p>
+		<table>
+			<tr id="kuwagaTraining">
+				<td class="tooltip">Kuwagamon
+					<span class="tooltiptext">
+						boosts MP-, Offense- and Brain-training<br/>
+						recruit Seadramon and go to the building on the left in beetleland -
+						talk to the kuwagamon at the top and select the second option
+					</span>
+				</td>
+				<td><input type='checkbox' name='checkbox' id="kuwaga"
+					onclick='setBoost(this);'></td>
+			</tr>
+			<tr id="kabuteriTraining">
+				<td class="tooltip">Kabuterimon
+					<span class="tooltiptext">
+						boosts HP-, Defense- and Speed-training<br/>
+						recruit Seadramon and Greymon and go to the building on the right in beetleland -
+						talk to the kabuterimon at the bottom left and select the second option
+					</span>
+				</td>
+				<td><input type='checkbox' name='checkbox' id="kabuteri"
+					onclick='setBoost(this);'></td>
+			</tr>
+			<tr>
+				<td class="tooltip">Trainingmanual
+					<span class="tooltiptext">
+						boosts all training<br/>
+						recruit Piximon and go to the big shop, Piximon will appear randomly behind the
+						counter and offer you the training manual for 50'000bits
+					</span>
+				</td>
+				<td><input type='checkbox' name='checkbox' id="manual"
+					onclick='setBoost(this);'></td>
+			</tr>
+		</table>
+		</div>
+		<hr>
+		<div>
+			<p>
+				Are you gonna use Items that boost your training? <br />Select the
+				item you're using, these effects only last until the digimon eats something else.<br />
+				(hover mouse over itemname to get more information)
+			</p>
+		<table>
+			<tr>
+				<td class="tooltip">SuperCarrot
+					<span class="tooltiptext">
+						boosts MP-, Offense- and Brain-training<br/>
+						effect: lose 2 weight and gain 10 energy <br/>
+						sold by Vegiemon and randomly dropped by RedVegiemon
+					</span>
+				</td>
+				<td>
+					<input class="trainingItem" type='checkbox' name='checkbox'
+					id="carrot" onclick='setTrainingItem(this);'>
+				</td>
+			</tr>
+			<tr>
+				<td class="tooltip">Hawk Raddish
+					<span class="tooltiptext">
+						boosts HP-, Defense- and Speed-training<br/>
+						effect: gain 3 weight and gain 15 energy <br/>
+						sold by Vegiemon and randomly dropped by Weedmon
+					</span>
+				</td>
+				<td>
+					<input class="trainingItem" type='checkbox' name='checkbox'
+					id="raddish" onclick='setTrainingItem(this);'>
+				</td>
+			</tr>
+			<tr>
+				<td class="tooltip">Digipine
+					<span class="tooltiptext">
+						boosts all training<br/>
+						effect: gain 2 weight and gain 22 energy <br/>
+						can be found at random in: <br/>
+						Misty Trees - Kokatorimon Screen (3% chance) <br/>
+						Misty Trees - Cherrymon Screen (4% chance) <br/>
+						Misty Trees - Entrance from Freezeland (4% chance)
+					</span>
+				</td>
+				<td>
+					<input class="trainingItem" type='checkbox' name='checkbox'
+					id="pine" onclick='setTrainingItem(this);'>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<hr>
+		<div>
+			<p>
+				Are you gonna do slots? check the different scenarios to see what you're getting into<br/>
+				<a href="https://www.youtube.com/watch?v=1lMRLW4-o1o" target="blank">check out this tutorial for manipulating slots</a>
+			</p>
+		</div>
+		<table>
+			<tr>
+				<td>fail slots</td>
+				<td>
+					<input class="slots" type='checkbox' name='checkbox'
+					id="fail" onclick='setSlots(this);'>
+				</td>
+			</tr>
+			<tr>
+				<td>other than training</td>
+				<td>
+					<input class="slots" type='checkbox' name='checkbox'
+					id="other" onclick='setSlots(this);'>
+				</td>
+			</tr>
+			<tr>
+				<td>same as training</td>
+				<td>
+					<input class="slots" type='checkbox' name='checkbox'
+					id="same" onclick='setSlots(this);'>
+				</td>
+			</tr>
+			<tr>
+				<td>golden poop</td>
+				<td>
+					<input class="slots" type='checkbox' name='checkbox'
+					id="gold" onclick='setSlots(this);'>
+				</td>
+			</tr>
+		</table>
+	</span>
+	<span>
+		<div id="digiList">test</div>
+		<div>
+			<table>
+				<tr>
+					<td>training</td>
+					<td>HP-Gain</td>
+					<td>MP-Gain</td>
+					<td>OFF-Gain</td>
+					<td>DEF-Gain</td>
+					<td>SPD-Gain</td>
+					<td>BRN-Gain</td>
+					<td>tiredness</td>
+				</tr>
+				<tr id="hpTraining">
+					<td>HP-Training</td>
+					<td id="hpHP">-</td>
+					<td id="hpMP">-</td>
+					<td id="hpOFF">-</td>
+					<td id="hpDEF">-</td>
+					<td id="hpSPD">-</td>
+					<td id="hpBRN">-</td>
+					<td>10</td>
+				</tr>
+				<tr id="mpTraining">
+					<td>MP-Training</td>
+					<td id="mpHP">-</td>
+					<td id="mpMP">-</td>
+					<td id="mpOFF">-</td>
+					<td id="mpDEF">-</td>
+					<td id="mpSPD">-</td>
+					<td id="mpBRN">-</td>
+					<td>7</td>
+				</tr>
+				<tr id="offTraining">
+					<td>OFF-Training</td>
+					<td id="offHP">-</td>
+					<td id="offMP">-</td>
+					<td id="offOFF">-</td>
+					<td id="offDEF">-</td>
+					<td id="offSPD">-</td>
+					<td id="offBRN">-</td>
+					<td>9</td>
+				</tr>
+				<tr id="defTraining">
+					<td>DEF-Training</td>
+					<td id="defHP">-</td>
+					<td id="defMP">-</td>
+					<td id="defOFF">-</td>
+					<td id="defDEF">-</td>
+					<td id="defSPD">-</td>
+					<td id="defBRN">-</td>
+					<td>9</td>
+				</tr>
+				<tr id="spdTraining">
+					<td>SPD-Training</td>
+					<td id="spdHP">-</td>
+					<td id="spdMP">-</td>
+					<td id="spdOFF">-</td>
+					<td id="spdDEF">-</td>
+					<td id="spdSPD">-</td>
+					<td id="spdBRN">-</td>
+					<td>8</td>
+				</tr>
+				<tr id="brnTraining">
+					<td>BRN-Training</td>
+					<td id="brnHP">-</td>
+					<td id="brnMP">-</td>
+					<td id="brnOFF">-</td>
+					<td id="brnDEF">-</td>
+					<td id="brnSPD">-</td>
+					<td id="brnBRN">-</td>
+					<td>6</td>
+				</tr>
+			</table>
+		</div>
+	</span>
+	<script type="text/javascript" src="maps.js"></script>
+	<script type="text/javascript" src="trimData.js"></script>
+	<script type="text/javascript" src="digiRaise.js"></script>
+	<script type="text/javascript" src="functions.js"></script>
+	<script type="text/javascript">
+		//alert(https://docs.google.com/spreadsheets/d/<<YOUR SPREADSHEET FILE ID>>/gviz/tq?tqx=out:html&tq=select%20A%20where%20A%20%21%3d%27%20%27&gid=<<YOUR SHEET ID>>)
+		window.onload = start();
+	</script>
+</body>
+</html>

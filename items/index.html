@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<title>Digimon World 1 Item Spawns</title>
+	</head>
+	<body>
+		<h1>Digimon World 1 Item Spawns</h1>
+
+		<div id="container">
+			<div class="dropdown">
+				<button onclick="showItemDropDown()" class="dropbtn">
+					list spawnItems
+				</button>
+				<button onclick="showMapDropDown()" class="dropbtn">
+					list spawnMaps
+				</button>
+				<button onclick="showBattleItemDropDown()" class="dropbtn">
+					list dropItems
+				</button>
+				<div id="itemDropdown">
+
+				</div>
+				<div id="mapDropdown">
+					
+				</div>
+				<div id="digiItemDropdown">
+					
+				</div>
+				<div id="digiMapDropdown">
+					
+				</div>
+			</div>
+		</div>
+		<div id="itemView" class="hidden">
+			<h2 id="itemName">
+				itemName
+			</h2>
+			<table id="itemList" style="width:50%;">
+			</table>
+			<div id="itemMap" class="mapIMG">
+			</div>
+		</div>
+
+		<div id="mapView" class="hidden">
+			<h2 id="mapName">
+				mapName
+			</h2>
+			<table id="mapList">
+			</table>
+			
+			<table id="mapListDigi" style="width:50%;">
+			</table>
+			<div id="map" class="mapIMG">
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="newData.js"></script>
+		<script type="text/javascript" src="metaData.js"></script>
+		<script type="text/javascript" src="digimonW.js"></script>
+		<script type="text/javascript" src="functions.js"></script>
+		<script type="text/javascript">
+			//alert(https://docs.google.com/spreadsheets/d/<<YOUR SPREADSHEET FILE ID>>/gviz/tq?tqx=out:html&tq=select%20A%20where%20A%20%21%3d%27%20%27&gid=<<YOUR SHEET ID>>)
+			window.onload = start();
+		</script>
+
+	</body>
+</html>

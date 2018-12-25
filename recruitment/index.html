@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="style.css" type="text/css"/>
+		<title>Digimon World Recruitment Helper</title>
+	</head>
+	<body style="display: flex; justify-content: center;align-items: center;vertical-align: center">
+		<div>
+			<div style="position: fixed;z-index: 2;background: #000000;width:100%;top:0">
+				<h1>Digimon World Recruitment Helper</h1>
+				<div id="status">
+					<div> 
+						prosperity points:
+						<span id="prosperityPoints"></span>
+					</div>
+					items
+					<div id="inventory"></div>
+					<div id="bits"></div>
+					<div>
+						<p>check digimon you already recruited</p>
+					</div>
+				</div>
+
+			</div>
+			<div style="position:relative;top:180px;z-index: 1">
+				<div id="recruitmentList"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="recruitmentData.js"></script>
+		<script type="text/javascript" src="mapData.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript">
+			//alert(https://docs.google.com/spreadsheets/d/<<YOUR SPREADSHEET FILE ID>>/gviz/tq?tqx=out:html&tq=select%20A%20where%20A%20%21%3d%27%20%27&gid=<<YOUR SHEET ID>>)
+			window.onload = load();
+			setInterval(function(){checkHash();},300);
+			//Object.getOwnPropertyNames(cb)
+		</script>
+
+	</body>
+</html>

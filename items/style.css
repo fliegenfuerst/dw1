@@ -1,0 +1,64 @@
+#itemView{
+	position:relative;
+}
+#itemList{
+	float:left;
+	width:100%;
+}
+table {
+	border:solid;
+}
+td{
+	border:solid;
+}
+.mapIMG, .tooltiptext{
+	position:fixed;
+	top:0;
+	right:0;
+    left:50%;
+    width:50%;
+}
+#mapList{
+	width:50%;
+}
+.map{
+	position:relative;
+	width:100%;
+	float:left;
+	
+}
+.hidden{
+	display: none;
+	visibility: hidden;
+}
+
+img{
+	background-color:#000000;
+	
+}
+.tooltiptext {
+    
+    visibility: hidden;
+    /*
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    */
+
+    /* Position the tooltip */
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltiptext:hover {
+    visibility: hidden;
+}
+.button{
+width:45%;
+	cursor:pointer;
+	border:solid;
+}

@@ -1,0 +1,28 @@
+input.cell{width:100%;text-align:left;height:100%;}
+.alignRight{text-align:right;}
+.warning{background:#FF0000;}
+#moveTable{float:left;width:100%}
+img{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;image-rendering:optimize-contrast;-ms-interpolation-mode:nearest-neighbor;}
+#container{position:relative;display:block;width:100%;height:100%;}
+#partner{left:0;float:left;}
+#detailDiv{float:left;}
+#regular{overflow-y:auto;width:100%}
+#partnerSprite img{width:48px;}
+div.tab{overflow:hidden;border:1px solid #ccc;background-color:#f1f1f1;padding:6px 12px;}
+div.tab button{background-color:inherit;float:left;border:none;outline:none;cursor:pointer;padding:14px 16px;transition:0.3s;font-size:17px;}
+div.tab button:hover{background-color:#ddd;}
+div.tab button.active{background-color:#ccc;}
+.tabcontent{display:none;padding:6px 12px;border:1px solid #ccc;border-top:none;width:90%;}
+.table{display:table;}
+.row{border:solid;display:table-row;}
+#detailDiv .cell{border:1px solid #ccc;}
+.cell{display:table-cell;padding-right:6px;padding-left:6px;}
+.isLearned1{background-color:darkgrey;}
+.move{cursor:pointer;border:1px solid #ccc;}
+.fire{background-color:red;}
+.battle{background-color:white;}
+.air{background-color:yellow;}
+.earth{background-color:lightgreen;}
+.ice{background-color:lightblue;}
+.mech{background-color:lightgrey;}
+.filth{background-color:peru;}

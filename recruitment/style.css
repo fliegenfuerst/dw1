@@ -1,0 +1,109 @@
+body{
+	padding:4px;
+    font-size: 14px;
+    vertical-align: top;
+    
+    color: #FFFFFF;
+    background-color: #000000;
+}
+img{
+}
+.dataTable{
+    width:600px;
+}
+.left{
+    float: left;
+    max-width: 670px;
+    min-width: 670px;
+}
+.mapContainer{
+    float: left;
+    right:12px;
+    top:12px;
+    width:300px;
+    margin:6px;
+}
+.map{
+    background-color: #000000;
+    max-width:100%;
+    max-height:300px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+}
+.firstCell{
+    width:80px;
+}
+.firsCellStats{
+    width:40px;
+    text-align: left;
+}
+.firstCellMoves{
+    text-align: left;
+    max-width:160px;
+    min-width:100px;
+}
+.stats{
+    width:500px;
+}
+.recruitmentList{
+    width: 1024px;
+}
+.recruitment{
+    position: relative;
+    width: 1000px;
+    overflow: auto;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: solid;
+    border-color: #000000;
+    padding: 4px;
+}
+.done{
+    color: #FFFFFF;
+    min-height: 0;
+    background-color: #000000;
+}
+#status{
+    width:800px;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 4px;
+    border-color: #FFFFFF;
+}
+.recruited{
+    text-align: left;
+    vertical-align: top;
+    float: left;
+}
+.requirement{
+}
+.name{
+    font-size: 20px;
+    font-weight: bold;
+}
+td{
+    vertical-align: top;
+}
+table{
+    text-align: left;
+    width: 100%;
+
+}
+.stats table{
+    text-align: left;
+}
+.stats table td{
+    border: 1px solid black;
+}
+.stats{
+    width: 334px;
+    float:left;
+}
+.moves{
+}
+.numberCell{
+    text-align: right;
+}
