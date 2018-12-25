@@ -1,0 +1,100 @@
+div.container{
+	padding:4px;
+}
+
+body {
+  background-color: #CCCCCC;
+  font-family: Times New Roman;
+  background-image: url("./img/misc/background.png");
+}
+
+
+h1 {
+  text-align: center;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+div.container {
+  border-style: solid;
+  border-width: 12px;
+  border-radius: 12px;
+  -moz-border-image: url("./img/misc/TextboxBorder.png") 20 20 repeat;
+  border-image: url("./img/misc/TextboxBorder.png") 20 20 repeat;
+  background-color: rgba(0,0,0,0.45);
+  color: #ffffff;
+  width: 98%;
+  overflow: hidden;
+}
+
+fieldset {
+  border-width: 0px;
+  width: 280px;
+  float: left;
+}
+
+fieldset dt {
+  float: left;
+  width: 130px;
+  text-align: left;
+}
+
+fieldset dd {
+  margin-left: 140px;
+  width: 55%
+}
+
+.header {
+  text-align: center;
+  font-weight: 600;
+}
+
+#output {
+  width: 800px;
+  float: left;
+  margin-left: 50px;
+}
+
+.digimon {
+  background-repeat: no-repeat;
+  background-position: 1px 0px;
+  padding-left: 18px;
+}
+
+select.digimon {
+  background-position: 1px 1px;
+  width: 160px;
+}
+
+.start {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  height: 100%;
+  background: url("./img/misc/start.gif");
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 100%;
+  background-color: #000;
+}
+
+.score {
+  text-align: right;
+}
+
+footer {
+  margin: 20px auto 0px auto;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.1);
+  min-width: 600px;
+  max-width: 1200px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+input[type="number"] { 
+  width: 150px; 
+}
