@@ -3,15 +3,15 @@
 <body>
 	<button onclick="getFortune()">get fortune</button>
 	<div style="white-space: pre-line" id="container">
-
 	</div>
-
+<script type="text/javascript" src="js/DW1Random.js"></script>
 <script>
-function getFortune(){
+const rng=new DW1Random();
 const user={name:"fliegenfuerst",digimon:{name:"gabu"},lastUsedFortune:"timestamp"};
 function getRandom(range){
-	return Math.floor((Math.random() * (range+1)));
+	return rng.nextRanged(range+1);
 }
+function getFortune(){
 let messages=[];
 messages.push("Are you interested in finding\nout your fortune?\nOK, let me look at it.\n");
 messages.push("Hmmm, oh... oh, wow!\n");
@@ -156,9 +156,7 @@ for(var i=0;i<messages.length;i++){
 	output+=messages[i]+"\n";
 }
 container.innerHTML=output;
-
 }
 </script>
-
 </body>
 </html>
