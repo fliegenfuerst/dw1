@@ -1,0 +1,165 @@
+<html>
+<head>
+<body>
+	<button onclick="getFortune()">get fortune</button>
+	<div style="white-space: pre-line" id="container">
+
+	</div>
+
+<script>
+function getFortune(){
+const user={name:"fliegenfuerst",digimon:{name:"gabu"},lastUsedFortune:"timestamp"};
+function getRandom(range){
+	return Math.floor((Math.random() * range));
+}
+let messages=[];
+messages.push("Are you interested in finding\nout your fortune?\nOK, let me look at it.\n");
+messages.push("Hmmm, oh... oh, wow!\n");
+messages.push("Well, first of all...\n");
+let currentValue=getRandom(11);
+if(currentValue<=0){
+	messages.push("Overall, you have\nvery good luck.\n");
+	currentValue=getRandom(2);
+	switch(currentValue){
+		case 0:
+			messages.push("Whatever you do,\nit will go well.\n");
+			break;
+		case 1:
+			messages.push("You'll have a wonderful\nchance coming to you.\n");
+			break;
+		case 2:
+			messages.push("You might have a\nmemorable event.\n");
+			break;
+	}
+}else if(currentValue<=3){
+	messages.push("Overall, it looks quite good.\n");
+	currentValue=getRandom(3);
+	switch(currentValue){
+		case 0:
+			messages.push("You might find\nan unexpected thing.\n");
+			break;
+		case 1:
+			messages.push("Your question will be\nanswered.\n");
+			break;
+		case 2:
+			messages.push("Your wallet will get fatter.\n");
+			break;
+		case 3:
+			messages.push("You might get good news\nfrom your friends.\n");
+			break;
+	}
+}else if(currentValue<=8){
+	messages.push("Your overall luck is fair.\n");
+	currentValue=getRandom(3);
+	switch(currentValue){
+		case 0:
+			messages.push("Changing your mood may be\ngood for you.\n");
+			break;
+		case 1:
+			messages.push("Try going somewhere you\ndon't usually go.\n");
+			break;
+		case 2:
+			messages.push("You might have an\ninteresting dream.\n");
+			break;
+		case 3:
+			messages.push("Try not spending\ntoo much money.\n");
+			break;
+	}
+}else if(currentValue<=10){
+	messages.push("Your overall luck is\nnot so good.\n");
+	currentValue=getRandom(3);
+	switch(currentValue){
+		case 0:
+			messages.push("Your secret may be revealed.\n");
+			break;
+		case 1:
+			messages.push("Better to go to bed early.\n");
+			break;
+		case 2:
+			messages.push("Guard your stuff well.\n");
+			break;
+		case 3:
+			messages.push("Your friend may get his\nfrustration out on you.\n");
+			break;
+	}
+}else if(currentValue<=11){
+	messages.push("Overall, it's not good.\n");
+	currentValue=getRandom(2);
+	switch(currentValue){
+		case 0:
+			messages.push("Multiple disasters may fall.\nupon you...\n");
+			break;
+		case 1:
+			messages.push("You might encounter a\nperson you don't like.\n");
+			break;
+		case 2:
+			messages.push("A big loss may fall\nupon you...\n");
+			break;
+	}
+}
+currentValue=getRandom(9);
+let favCol="Your lucky color is ";
+switch(currentValue){
+	case 0:
+		favCol+="red";
+		break;
+	case 1:
+		favCol+="white";
+		break;
+	case 2:
+		favCol+="blue";
+		break;
+	case 3:
+		favCol+="black";
+		break;
+	case 4:
+		favCol+="green";
+		break;
+	case 5:
+		favCol+="gray";
+		break;
+	case 6:
+		favCol+="brown";
+		break;
+	case 7:
+		favCol+="yellow";
+		break;
+	case 8:
+		favCol+="purple";
+		break;
+	case 9:
+		favCol+="gold";
+		break;
+}
+messages.push(favCol+".\n");
+messages.push("Finally, about your\ncompatibility with\n"+user.digimon.name+"...\n");
+currentValue=getRandom(4);
+switch(currentValue){
+	case 0:
+		messages.push("It's a perfect match.\n");
+		break;
+	case 1:
+		messages.push("It's pretty good.\n");
+		break;
+	case 2:
+		messages.push("It's ok.\n");
+		break;
+	case 3:
+		messages.push("It's so so.\n");
+		break;
+	case 4:
+		messages.push("It's not bad...\n");
+		break;
+}
+let output="";
+for(var i=0;i<messages.length;i++){
+	console.log(messages[i]);
+	output+=messages[i]+"\n";
+}
+container.innerHTML=output;
+
+}
+</script>
+
+</body>
+</html>
