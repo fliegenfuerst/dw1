@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="ISO-8859-1">
+		
+<meta name="robots" content="index, follow" />
+
+		<title>The DigiDex Project</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="container">
+		<div>
+		<div>
+	<div  style="float:left;">
+		<div class="dropdown">
+			<button onclick="dropDownDigi()" class="dropbtn">
+				Digimon
+			</button>
+			<div id="digiDropdown" class="dropdown-content"></div>
+		</div>
+		<div class="dropdown">
+			<button onclick="dropDownTech()" class="dropbtn">
+				Technik
+			</button>
+			<div id="techDropdown" class="dropdown-content"></div>
+		</div>
+		<div class="dropdown">
+			<button onclick="dropDownTechE()" class="dropbtn">
+				Move
+			</button>
+			<div id="techDropdownE" class="dropdown-content"></div>
+		</div>
+		</div>
+		<div style="float:right; width:1000px;">
+				<input style="width:80%;" type="text" id="techInp" value="enter your saved Data then click OK"/>
+				<input style="width:19%;" type="button" value="OK" onclick="loadTechMap()"/>
+			<div>copy the following string to save your progress, enter it above once you return to this page to load:</div>
+			<div id="mySave"></div>
+			</div>
+
+	</div>
+	
+<!--
+		//-->
+			<div>
+				<div style="float:left; width:24%;">In the table to the right click on the moves you already have to get a clearer overview (all moves you select there will have grey background in the dropdowns and digimon movelists), use the string to restore your setup for later use (obsolete: copy the url instead, it will reload your configuration on load).
+					<div style="border:solid;" id="techCount">0</div>
+					
+					<button class="lang" id="german" onclick="setLang('german')">German</button>
+					<button class="lang" id="english" onclick="setLang('english')">English</button>
+					</div>
+			
+			<table id="techTable" style="width:1000px; height:210px;float:right;">
+
+				<tr style="background-color:red;">
+					<td>fire</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr>
+					<td>battle</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr style="background-color:yellow;">
+					<td>air</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr style="background-color:lightgreen;">
+					<td>earth</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr style="background-color:lightblue;">
+					<td>ice</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr style="background-color:lightgrey;">
+					<td>mech</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				<tr style="background-color:peru;">
+					<td>filth</td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td><td class="myTech"></td>
+				</tr>
+				
+			</table>
+			</div>
+	</div>
+	
+		<div style="float:left">
+		<table>
+
+			<tr>
+				<td>
+				<div style="min-width:24%;max-width:24%;" id="demo">
+					digimon
+				</div>
+				<div style="width:988px; float:right;"id="demo2">
+					techniques
+				</div></td>
+			</tr>
+			<tr>
+				<td>
+				<div id="aboutThis">
+					<h1>UPDATE</h1>
+					I've changed the handling so that the learned moves from the table are stored in the URL so you can simply copy the link of the browserwindow this is running in and it will restore the same state as when you copied the link.
+							<br>
+					<br>
+					cheers
+							<br>
+					<br>
+					
+					FYI all the raisable digimon's moves are taken from syd montague's list that consists of ingame values so if there are no differences between pal and ntsc in that department, they should be 100% correct. The wild Digimon on the other hand are still just the best information available, no indication to completeness or origin, but there is enough to go around, say, you can find a digimon you can fight for each move except metal splinter (which appearantly is the mech starter move that you leaarn once you get your first mech digimon). So as long as you haven't beaten all the bosses yet you won't have to train brains to learn moves. 
+
+					<br>
+					<br>
+					enjoy!
+
+					<br>
+					<br>
+					Hello there gamer,
+					<br>
+					<br>
+					If you are reading this chances are you've started playing Digimon World again, or made the mistake to listen to a friend who made it look like it wasn't going to be a huge part of your life...
+					<br>
+					<br>
+					...well to cut to the chase: This here is a javascript tool I originally wrote to merge two german movelists.
+					The <a href="http://digimons-world.de/images/is/gam/dw1/Attackenguide.txt" target="blank">first</a> was the only complete list of the german names, not much else to go around yet though.
+					The <a href="http://wiki.digimon-generation.org/wiki/Liste_der_Techniken_in_Digimon_World" target="blank">second one</a> contained the english names and which digimon can learn the moves.
+					<br>
+					<br>
+					By the time I had fixed some mistakes in the lists and merged them I had already stumbled across a <a href="http://www.gamefaqs.com/ps/913684-digimon-world/faqs/9420" target="blank">third list</a> containing comments about the attacks and how to get them, but more importantly an incomplete list of wild digimon with their active time and region.
+					<br>
+					<br>
+					So I merged that data into my tool, extending the digimon and tech objects I wrote, and just when I was done I came across the <a href="http://dwdeluxe-enemy.blogspot.ch/2011/01/specialdigi.html" target="blank">fourth list</a> with a seemingly complete list of wild digimon and their techniques, as well as HP, Bits, Items and Comments.
+					<br>
+					<br>
+					When looking a bit more closely you will notice that there are some contradictory datasets in there as well as some doubles in the wild digimon section because it seemed better to have duplicates from the different lists than leaving some out.
+					<br>
+					<br>
+					I have also found a post about learning probabilities by <a href="http://www.gamefaqs.com/boards/913684-digimon-world/63048404?page=1" target="blank">romsstar</a> which I will integrate once I've figured out what each Digimon's natures are or find a list that includes this information.
+					<br>
+					<br>
+					Some great information in german is available <a href="http://www.spieletipps.de/psx/digimon-world/fragen/id-13267109/" target="blank">here</a> there's also a link to a <a href="https://www.phoenix-staffel.de/digimon/DigimonWorld/evolution.html" target="blank">digivolution tool</a>.
+					I wrote a variation of that tool that allows you to see all possibilities from the egg onward. it can be found <a href="http://www.mapartstudio.ch/evolutionTool" target="blank">here</a>.
+					<br>
+					<br>
+					A big thank you to romsstar for giving europeans the opportunity to play this game as it was originally intended, I still get excited when I think about the moment I found <a href="https://www.youtube.com/watch?v=_3e3LYiPFtI" target="blank">this</a> and realised I could finally beat one of my all time favourite games.
+					<br>
+					<br>
+					Thanks also to all that contributed to the lists I integrated. Your work has kept a lot of gamers from losing their minds!
+					<br>
+					<br>
+					cheers
+				</div></td>
+			</tr>
+		</table>
+</div>
+</div>
+		<script src="js/funky.js"></script>
+		<script src="js/tech.js"></script>
+		<script src="js/data.js"></script>
+		<script src="js/math.js"></script>
+		<script src="js/searchHandle.js"></script>
+		<script>
+			window.onload = executeFunctions;
+
+		</script>
+	</body>
+</html>

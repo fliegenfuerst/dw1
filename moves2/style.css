@@ -1,0 +1,126 @@
+img.digImg { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+
+}
+.digiData{
+	min-width:100%;
+	max-width:100%;
+}
+.lang{
+	height:40px;
+	width:156px;
+}
+#aboutThis{
+	float:bottom;
+	
+}
+#container{
+	width:1320px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wD{
+	border:solid;
+}
+.fire{
+	background-color:red;
+}				
+.air{
+	background-color:yellow;
+}
+.earth{
+	background-color:lightgreen;
+}
+.ice{
+	background-color:lightblue;
+}
+.mech{
+	background-color:lightgrey;
+}
+.filth{
+	background-color:peru;
+}
+.on{
+	background-color:grey;
+}
+table {
+    border: solid;
+}
+td.myTech{
+    border: solid;
+}
+td.tech{
+    border: solid;
+}
+td{
+	vertical-align: top;
+}
+.dName{
+	font-size:160%;
+}
+.tech,.myTech {
+    cursor: pointer;
+}
+
+
+.techInfo {
+}
+
+#demo {
+    float: left;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
