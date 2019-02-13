@@ -8,8 +8,10 @@
 	</head>
 	<style>
 		#container{
-			max-height: 100%;
-			height: 100%;
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
 		}
 		#dw1Tools{
 			background-image: url("img/digimon.png");
@@ -17,31 +19,54 @@
 			height:960px;
 			width:1280px;
 		}
-		#menu {
+		#infoPanel{
+			height: 128px;
+			top:488px;
+		}
+		#menu{
 			height: 252px;
+			top:200px;
+		}
+		.textBox{
+			position: absolute;
 			width:708px;
-
 			border: 16px solid transparent;
 			border-image: url(img/border.png) 4 4 repeat;
-
-			position:relative;
-			top:-120px;
+			transform: translate(-50%,0);
+			left:50%;
 		}
-		#menuGradient{
+		.gradient{
 			position: absolute;
 			top:-4px;
 			left:-4px;
 			width:716px;
-			height: 260px;
 			background-color: #000030; /* For browsers that do not support gradients */
 			background-image: linear-gradient(#000070, #000030); /* Standard syntax (must be last) */
 			z-index: 1;
 		}
+		.menuGradient{
+			height: 260px;
+		}
+		.infoGradient{
+			height: 136px;
+		}
 		.menuText{
 			position: relative;
 			left:30px;
-			top:0;
 			z-index: 2;
+			width:90%;
+		}
+		.borderer:hover { 
+			border: 4px solid #a0a000;
+			margin:-4px;
+		}
+		.borderer{
+			position: absolute;
+			left:-14px;
+			width:676px;
+			height: 100%;
+		}
+		a {
 		    color: #d7d7d7;
   			text-decoration: none;
 		}
@@ -65,38 +90,74 @@
 			image-rendering:optimize-contrast;
 			-ms-interpolation-mode:nearest-neighbor;
 		}
+		.hidden{
+			display:none !important;
+			visibility:hidden !important;
+		}
 	</style>
-	<body style="display: flex; justify-content: center;align-items: center;">
+	<body>
 		<div id="container">
-			<div id="dw1Tools" style="display: flex; justify-content: center;align-items: center;vertical-align: center">
+			<div id="dw1Tools">
 				<div>
-					<div id="menu"><div id="menuGradient"></div>
-					<a href="https://fliegenfuerst.github.io/dw1/recruitment" class="menuText" target="_blank">
-						RECRUITMENT TOOL
-					</a>
-					<br>
-					<a href="https://fliegenfuerst.github.io/dw1/moves" class="menuText" target="_blank">
-						MOVELEARNING TOOL
-					</a>
-					<br>
-					<a href=https://fliegenfuerst.github.io/dw1/evolution" class="menuText" target="_blank">
-						EVOLUTION TOOL
-					</a>
-					<br>
-					<a href="https://fliegenfuerst.github.io/dw1/items" class="menuText" target="_blank">
-						ITEM TOOL
-					</a>
-					<br>
-					<a href="https://fliegenfuerst.github.io/dw1/training" class="menuText" target="_blank">
-						TRAINING CALCULATOR
-					</a>
-					<br>
-					<a href="https://cdn.discordapp.com/attachments/350366304743456772/541651167533334528/dw1-helper-20190203_1.rar" class="menuText" >
-						JAVA IN MEMORY TOOL
-					</a>
+					<div id="menu" class="textBox" onmouseout="hideInfo()">
+						<div class="gradient menuGradient"></div>
+						
+						<a href="https://fliegenfuerst.github.io/dw1/recruitment" class="menuText" onmouseover="showInfo('recruitments')" target="_blank">
+							RECRUITMENT TOOL
+							<span class="borderer"></span>
+						</a>
+						
+						<br>
+						<a href="https://fliegenfuerst.github.io/dw1/moves" class="menuText" onmouseover="showInfo('moves')" target="_blank">
+							MOVELEARNING TOOL
+							<span class="borderer"></span>
+						</a>
+						<br>
+						<a href="https://fliegenfuerst.github.io/dw1/evolution" class="menuText" onmouseover="showInfo('evolution')" target="_blank">
+							EVOLUTION TOOL
+							<span class="borderer"></span>
+						</a>
+						<br>
+						<a href="https://fliegenfuerst.github.io/dw1/items" class="menuText" onmouseover="showInfo('items')" target="_blank">
+							ITEM TOOL
+							<span class="borderer"></span>
+						</a>
+						<br>
+						<a href="https://fliegenfuerst.github.io/dw1/training" class="menuText" onmouseover="showInfo('training')" target="_blank">
+							TRAINING CALCULATOR
+							<span class="borderer"></span>
+						</a>
+						<br>
+						<a href="https://cdn.discordapp.com/attachments/350366304743456772/541651167533334528/dw1-helper-20190203_1.rar" class="menuText" onmouseover="showInfo('javatool')">
+							JAVA IN MEMORY TOOL
+							<span class="borderer"></span>
+						</a>
+					</div>
 				</div>
+				<br>
+			<div id="infoPanel" class="hidden">
+				<div class="gradient infoGradient"></div>
+				<div id="infoText" class="menuText">
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+const info={};
+info.recruitments="Check off Digimon you already recruited and see which recruits are available next";
+info.moves="Select your Digimon Partner and see all moves where you can learn them and more";
+info.evolution="Displays evolution lines and requirements";
+info.items="Lists items that spawn on maps and items dropped after fights";
+info.training="Displays how much training will increase your stats with each digimon";
+info.javatool="Based on the java API created by sydmontague the tool can read and write values in the game";
+
+
+function hideInfo(){
+	infoPanel.className="hidden";
+}
+function showInfo(category){
+	infoPanel.className="textBox";
+	infoText.innerText=info[category];
+}
+		</script>
 	</body>
 </html>
