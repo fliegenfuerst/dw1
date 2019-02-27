@@ -1,69 +1,3 @@
-//Special requirements:
-/*
--guardromon passing for factorial town
--otamamon /shogungeko /cherrymon for misty trees
--talk to yuramon
--multiple instances (nani/ogre)
--drimogemon talk to get to meramon
--drimogemon talk to open tunnel
--list of digimon who can trigger frigimon
-
-//special item vendors:
--Numemon/Mojyamon/Devimon/Mamemon
-
-//important triggers
-
--obtain fishing rod	->seadramon, kuwagamon, kabuterimon
--talk to yuramon after seeing invisible bridge
--talk to yuramon after palmon recruit
--talk to tanemon after rainplant pick up
--talk to tanemon after getting rainplant (triggers on day 15)
--first coelamon encounter
--see digibridge being rebuilt from tropical side	-> coelamon & ninjamon
-
--talk to digging drimogemon to start 5 day timer
--reduce 5day timer by helping drimogemon
--talk to drimogemon in southern cave again after meramon fight
-
-
-
-//-----------------visual
--tool tip for list of digimon that can trigger frigimon
-
--RED MEANS FIGHT GREEN MEANS TALK/TASK
-
--OPEN PATH TO MT PANORAMA_: BEAT MERAMON
--OPEN PATH TO FOOT OF MT PANORAMA_: TALK TO DRIMOGEMON AFTER BEATING MERAMON
-
-meramon+centarumon/meramon+drimogemon/walking through great canyon, freezeland, misty trees, gear savanna
-
-TALK TRIGGER LIST "YES YES NO"
-
--
-
-see strange markings on vademon screen	USE MAP VERSIONS OF
-
-
-
-beat meramon and talk to drimogemon ->wait 3 days
-
-digimon to fight (in groups -> use separate borders and map image to signify the different fights
-
-
-LEOMONSTONE
-
--obtain fishing rod	->seadramon, kuwagamon, kabuterimon
-
-
-
-*/
-//---------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//					var str='<div><table><tr><td>HP</td><td>'+digimon.HP+'</td></tr><tr><td>MP</td><td>'+digimon.MP+'</td></tr><tr><td>OFF</td><td>'+digimon.Offense+'</td></tr><tr><td>DEF</td><td>'+digimon.Defense+'</td></tr><tr><td>SPD</td><td>'+digimon.Speed+'</td></tr><tr><td>BRN</td><td>'+digimon.Brains+'</td></tr></table></div>';
-
-
 var done=[];
 var recruitBin="000000000000000000000000000000000000000000000000000000000";
 var recruiteables=[];
@@ -227,8 +161,6 @@ function getRecruitmentDetails(digimon){
 		list+='<img class="map" src="https://www.phoenix-staffel.de/digimon/DigimonWorld/Backgrounds/' + digimon.maps[i] + '.TFS/' + digimon.maps[i] + '.TFS.0.PNG"/>';
 	}
 	list+='<img class="map" src="https://www.phoenix-staffel.de/digimon/DigimonWorld/Backgrounds/' + digimon.recruitMap + '.TFS/' + digimon.recruitMap + '.TFS.0.PNG"/></div></div>';
-//list+='<div class="mapContainer"><div><img class="map" src="https://www.phoenix-staffel.de/digimon/DigimonWorld/Backgrounds/' + digimon.recruitMap + '.TFS/' + digimon.recruitMap + '.TFS.0.PNG"/></div></div>';
-
 	list+='</div>';
 	return list;
 }
@@ -413,23 +345,3 @@ function restoreZeros(str){
 		return str;
 	}
 }
-
-/*
-tyrannomon	KODA07.MAP
-ogremon
-leomon (cutscene, gym, drill tunnel)	GIAS07	GIAS09	TUNN03_2
-angemon		ICSA06
-nanimon		OMOC08	KODA07	LEOM01	FACT11B	OGRE03
-monzaemon	OMOC08
-
-
-ADJUST MOVE PERCENTAGES
-
-check all nanimon recruits before giving 1PP
-
-add extra maps 'if leomon || angemon || tyrannomon || monzaemon || drimogemon || meramon
-
-add toytown gear map for monzaemon recruit
-
-vegiemon file city top map
-*/
