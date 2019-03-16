@@ -1,0 +1,170 @@
+#container{
+	background-color: none;
+}
+.scrollBar{
+    float: right;
+	min-width:16px;
+	min-height:97%;
+	height: 97%;
+	max-height: 97%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	padding:0;
+	border: 2px solid transparent;
+	border-image: url("img/scrollBarBorder.png") 1 1 repeat;
+}
+.scrollBarHandle{
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+	margin-top:0;
+	min-width:12px;
+	min-height:16px;
+	border: 2px solid transparent;
+	border-image: url("img/scrollBarHandleBorder.png") 1 1 repeat;
+}
+.scrollBarHandle:active{
+	cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+#itemList{
+    min-width: 50%;
+	position: absolute;/*
+	transform: translate(-50%,0);
+	left:50%;*/
+	min-height:80%;
+	height: 80%;
+	max-height: 80%;
+	top:2%;
+	left:2%;
+}
+#itemDetails{
+    min-width: 50%;
+	position: absolute;/*
+	transform: translate(-50%,0);
+	left:50%;*/
+	min-height:6%;
+	height: 6%;
+	max-height: 6%;
+	bottom:2%;
+	left:2%;
+
+}
+.textBox{
+	display: inline-block;
+	background-color:rgba(0,0,0,0.45);
+	border-style: solid;
+	border-width: 10px;
+	/*border: 10px solid transparent;*/
+	border-image: url("img/TextboxBorder.png") 4 5 repeat;
+	/*padding: 0 2px 0 2px;*/
+	padding: 6px 6px 6px 6px;
+    text-shadow: 2px 2px #000000;
+    border-radius: 9px;
+	overflow: hidden;
+	/*border: 2px solid transparent;
+	border-image: url("img/itemSelectedBorder.png") 1 1 repeat;
+
+
+	border: 10px solid transparent;
+	border-image: url("img/TextboxBorder.png") 5 5 repeat;
+
+
+	border: 16px solid transparent;
+	border-image: url("img/border.png") 4 4 repeat;*/
+	
+}
+.itemSprite{
+	height:32px;
+	width:32px;
+	margin-left:4px;
+}
+.content{
+	float: left;
+	height: auto;
+	margin-top: 0px;
+	width:90%;
+}
+.content:active{
+	cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.itemColor-1{
+	color:#858585;
+}
+.itemColor0{
+	color:#32d6d6;
+}
+.itemColor1{
+	color:#fe3285;
+}
+.itemColor2{
+	color:#32fe32;
+}
+.unbuyableColor{
+	color:#e73129;
+}
+.itemSelectedColor{
+	outline: 2px solid #f04a5d;
+}
+.selectedItem{
+	border: 2px solid transparent;
+	border-image: url("img/itemSelectedBorder.png") 1 1 repeat;
+	margin:-2px;
+}
+.listItem { 
+	height:34px;
+	min-height: 34px;
+	max-height: 34px;
+	width:275px;
+	margin-bottom: 2px;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+}
+.listItem:hover { 
+	border: 2px solid transparent;
+	border-image: url("img/itemHoverBorder.png") 1 1 repeat;
+	margin:-2px;
+	margin-bottom: 0px;
+	background-color:rgba(255,255,255,0.07);
+}
+.itemName{
+	height:34px;
+	min-height: 34px;
+	max-height: 34px;
+	position: absolute;
+	margin-top: -4px;
+	margin-left: 6px;
+}
+@font-face {
+    font-family: "dw1"; /*a name to be used later*/
+    src: url("fonts/digimonworld_textbox_v2.ttf"); /*URL to font*/
+}
+body {
+    font-family: "dw1";
+    color: #d7d7d7;
+    text-decoration-color: #ffffff;
+    font-size: 24px;
+    background: #777777;
+	image-rendering:optimizeSpeed;
+	image-rendering:-moz-crisp-edges;
+	image-rendering:-o-crisp-edges;
+	image-rendering:-webkit-optimize-contrast;
+	image-rendering:pixelated;
+	image-rendering:optimize-contrast;
+	-ms-interpolation-mode:nearest-neighbor;
+}
+.hidden{
+	display:none !important;
+	visibility:hidden !important;
+}
