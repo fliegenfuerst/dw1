@@ -84,7 +84,7 @@ var selectedItem=0;
 itemDetails.innerHTML=items[selectedItem].description.eng;
 
 function showDescription(id){
-	itemDetails.innerHTML=items[parseInt(id,16)+1].description.eng;
+	itemDetails.innerHTML=items[parseInt(id,16)].description.eng;
 	TextBoxes["itemDetails"].update();
 }
 function setSelectedItem(id){
