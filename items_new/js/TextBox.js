@@ -4,14 +4,9 @@ class TextBox {
         this.main=getDiv("textBox");
         this.scrollBar=getSpan("scrollBar");
         this.scrollBarHandle=getDiv("scrollBarHandle");
-		this.scrollBarHandle.onmousedown=this.doScroll;
-		this.scrollBarHandle.onmouseup=this.stopScroll;
-		this.scrollBar.onmousedown=this.doScroll;
-		this.scrollBar.onmouseup=this.stopScroll;
-        this.content.onmousedown=this.doScroll;
-        this.content.onmouseup=this.stopScroll;
-		this.main.onmousemove=this.updateScroll;
-		this.main.onmouseup=this.stopScroll;
+		this.scrollBarHandle.onmousedown=this.scrollBar.onmousedown=this.content.onmousedown=this.doScroll;
+		this.scrollBarHandle.ontouchstart=this.scrollBar.ontouchstart=this.content.ontouchstart=this.doScroll;
+		this.main.ontouchmove=this.main.onmousemove=this.updateScroll;
 		this.main.onwheel=this.mouseWheelScroll;
         this.scrollBar.appendChild(this.scrollBarHandle);
         this.main.appendChild(this.content);
@@ -25,9 +20,7 @@ class TextBox {
         this.update();
 		let body=document.getElementsByTagName("BODY")[0];
 		body.onresize=this.updateAll;
-		body.onmouseleave=this.stopScroll;
-		body.onscroll=this.stopScroll;
-		body.onmouseup=this.stopScroll;
+		body.onmouseleave=body.onscroll=body.onmouseup=this.stopScroll;
     }
     stopScroll(){
     	for(let textBox in textBoxes){
@@ -61,16 +54,16 @@ class TextBox {
 		if(this.className=="scrollBarHandle"){
 			current=textBoxes[this.parentNode.parentNode.id];
 			current.source=1;
-			current.grabPosition=arguments[0].clientY-getOffset(current.scrollBarHandle);
+			current.grabPosition=(arguments[0].clientY||arguments[0].touches[0].clientY)-getOffset(current.scrollBarHandle);
 		}else if(this.className=="scrollBar"){
 			current=textBoxes[this.parentNode.id];
 			if(current.source!==1){
 				current.source=0;
-				current.scrollBarJump(arguments[0].clientY);
+				current.scrollBarJump(arguments[0].clientY||arguments[0].touches[0].clientY);
 			}
 		}else if(this.className=="content"){
 			current=textBoxes[this.parentNode.id];
-        	current.contentGrabPosition=arguments[0].clientY-current.mainPosition;
+        	current.contentGrabPosition=(arguments[0].clientY||arguments[0].touches[0].clientY)-current.mainPosition;
         	current.contentDragStartPosition=current.contentPosition;
 			current.source=2;
 		}
@@ -79,10 +72,10 @@ class TextBox {
 		let current=textBoxes[this.id];
 		switch(current.source){
 			case 1:
-				current.scrollBarScroll(arguments[0].clientY);
+				current.scrollBarScroll(arguments[0].clientY||arguments[0].touches[0].clientY);
 				break;
 			case 2:
-				current.mouseDragScroll(arguments[0].clientY);
+				current.mouseDragScroll(arguments[0].clientY||arguments[0].touches[0].clientY);
 				break;
 			default:
 				break;
@@ -163,11 +156,6 @@ class TextBox {
 		this.content.style.marginTop=this.contentPosition+"px";
 		this.scrollBarHandle.style.marginTop=this.scrollBarHandlePosition+"px";
 	}
-	/*
-	set content(content){
-		this._content=content;
-		this.update();
-	}*/
 }
 function adjustHeight(el,value){
 	el.style.minHeight=value+"px";
@@ -191,17 +179,3 @@ function getSpan(className){
 	span.className=className;
 	return span;
 }
-/*
-
-const scrollBarHandle=document.getElementById("scrollBarHandle");
-const scrollBar=document.getElementById("scrollBar");
-const itemList=document.getElementById("itemList");
-const main=document.getElementById("main");
-
-
-
-
-
-        this.=document.createElement("DIV");
-        this.=document.createElement("SPAN");
-	*/
