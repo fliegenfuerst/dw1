@@ -9,7 +9,6 @@
 	<body>
 		<script>
 		const textBoxes={};
-		//textBoxes.itemList="hui";
 	</script>
 		<script type="text/javascript" src="js/ToolBox.js"></script>
 		<script type="text/javascript" src="js/itemsDigivolve.js"></script>
@@ -17,58 +16,9 @@
 		<script type="text/javascript" src="js/food.js"></script>
 		<script type="text/javascript">
 
-/*
-	<body onscroll="stopScroll()" onmouseleave="stopScroll()" onresize="rebuildGUI()">
-<div id="menuTextBox" onmousemove="updateScroll(event)" onmouseup="stopScroll()" onscroll="myFunction()" onwheel="handleMouseWheel(event)">
-			<span id="itemList">
-			</span>
-			<span id="scrollBar" onmousedown="doScroll(event)" onmouseup="stopScroll()">
-				<div id="scrollBarHandle" onmousedown="doScroll(event)" onmouseup="stopScroll()"></div>
-			</span>
-		</div>
-		*/
-
-/*
-function getOffset(el) {
-	    var rect = el.getBoundingClientRect(),
-	    //scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-	    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	    //return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-	    return rect.top + scrollTop
-	}
-*/
-//new TextBox(document.getElementsByTagName("BODY")[0]);
-
-//const scrollBarHandle=document.getElementById("scrollBarHandle");
-//const scrollBar=document.getElementById("scrollBar");
 const itemList=ToolBox.getElement("SPAN",false,"content",false,false);
 const itemDetails=ToolBox.getElement("SPAN",false,"content itemDetails",false,false);
-//const menuTextBox=document.getElementById("menuTextBox");
-/*
-const scrollState={
-	source:-1,//-1 = no scroll, 0 = scrollBar clicked, 1 = scrollBarHandle clicked
-	scrollBarPosition:-1,
-	scrollBarHeight:-1,
-	scrollBarHandleHeight:-1,
-	grabPosition:0,
-	itemListHeight:-1,
-	menuTextBoxHeight:-1,
-	heightDifference:-1,
-	currentPercentage:0,
-};
-
-
-function myFunction(event){
-	console.log("okay");
-}function dragStart(event) {
-  event.dataTransfer.setData("Text", event.target.id);
-}
-
-*/
-			//(function() {
 for(var i=0;i<items.length;i++){
-//for(var i=0;i<20;i++){
-	console.log("z");
 	itemList.innerHTML+=
 	`<div class="listItem" id="item-${items[i].id}" onmouseover="showDescription('${items[i].id}')">
 		<span>
@@ -79,13 +29,11 @@ for(var i=0;i<items.length;i++){
 		</span>
 	</div>`;
 }
-//})();
 var selectedItem=0;
 itemDetails.innerHTML=items[selectedItem].description.eng;
-
 function showDescription(id){
 	itemDetails.innerHTML=items[parseInt(id,16)].description.eng;
-	TextBoxes["itemDetails"].update();
+	textBoxes["itemDetails"].update();
 }
 function setSelectedItem(id){
 	console.log(id);
@@ -94,141 +42,9 @@ function setSelectedItem(id){
 		idGet("item-"+id).className="listItem selectedItem";
 		selectedItem=id;
 }
-
-//rebuildGUI();
 textBoxes.itemList=new TextBox("itemList",document.getElementsByTagName("BODY")[0],itemList);
 textBoxes.itemDetails=new TextBox("itemDetails",document.getElementsByTagName("BODY")[0],itemDetails);
-/*
-function rebuildGUI(){
-	console.log("say what");
-	scrollState.scrollBarHeight=scrollBar.offsetHeight;
-	scrollState.itemListHeight=itemList.offsetHeight;
-	scrollState.menuTextBoxHeight=menuTextBox.offsetHeight;
-	scrollState.heightDifference=scrollState.menuTextBoxHeight-scrollState.itemListHeight-16;
-	scrollState.scrollBarHandleHeight=Math.floor(scrollState.scrollBarHeight*(scrollState.menuTextBoxHeight/scrollState.itemListHeight));
-	scrollBarHandle.style.minHeight=scrollState.scrollBarHandleHeight+"px";
-	scrollBarHandle.style.maxHeight=scrollState.scrollBarHandleHeight+"px";
-	scrollBarHandle.style.height=scrollState.scrollBarHandleHeight+"px";
-	scrollState.scrollBarPosition=getOffset(scrollBar);
-	if(scrollState.heightDifference>0){
-		scrollBar.className="hidden";
-	}else{
-		scrollBar.className="";
-		updateValues();
-		scrollToPercentage();
-	}
-}
-function hideInfo(){
-	infoPanel.className="hidden";
-}
-function showInfo(category){
-	infoPanel.className="textBox";
-	infoText.innerText=info[category];
-}
-function updateValues(){
-}
-function scrollToPercentage(){
-console.log(scrollState);
-	scrollBarHandle.style.marginTop=scrollState.currentPercentage*(scrollState.scrollBarHeight-scrollState.scrollBarHandleHeight)+"px";;
-	itemList.style.marginTop=scrollState.heightDifference*scrollState.currentPercentage+"px";
-}
-function checkScrollBounds(y){//return false if scrollBarHandle out of bounds (lock at top respectively bottom until true)
-	updateValues();
 
-	if(scrollState.scrollBarPosition+scrollState.scrollBarHeight-scrollState.scrollBarHandleHeight-8<y-scrollState.grabPosition){//mouse below scrollBar
-		scrollBarHandle.style.marginTop=scrollState.scrollBarHeight-scrollState.scrollBarHandleHeight-8+"px";
-		itemList.style.marginTop=scrollState.heightDifference+"px";
-	}else if(y-scrollState.grabPosition<scrollState.scrollBarPosition){//mouse above scrollBar
-		scrollBarHandle.style.marginTop="0px";
-		itemList.style.marginTop="0px";
-	}else{//mouse inside scrollBar or left or right of it while pressed
-		getPercentage();
-		scrollBarHandle.style.marginTop=y-scrollState.scrollBarPosition-scrollState.grabPosition+"px";
-
-		itemList.style.marginTop=scrollState.heightDifference*scrollState.currentPercentage+"px";
-	}
-}
-function updateScroll(event){
-
-		if(scrollState.source==1){
-			//console.log("bar"+event.clientY);
-			checkScrollBounds(event.clientY);
-		}else{
-
-		}
-}
-function getPercentage(){
-	scrollState.currentPercentage=(parseInt(scrollBarHandle.style.marginTop.slice(0, -2))+8)/(scrollState.scrollBarHeight-scrollState.scrollBarHandleHeight);
-}
-
-function doScroll(source){
-	if(source.target.id=="scrollBarHandle"){
-		console.log("handle");
-		scrollState.source=1;
-		scrollState.grabPosition=source.clientY-getOffset(scrollBarHandle);
-	}else{
-		if(scrollState.source!=1){
-			console.log("bar");
-			scrollState.source=0;
-		}else{
-
-		}
-
-	}
-}
-function stopScroll(){
-	scrollState.source=-1;
-}
-function handleMouseWheel(event){
-	console.log("weeeeee"+event.deltaY);
-}
-*/
-
-/*
-// Make the DIV element draggable:
-dragElement(document.getElementById("scrollBarHandle"));
-
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-*/
 
 
 		</script>
