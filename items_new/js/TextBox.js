@@ -4,10 +4,10 @@ class TextBox {
         this.main=getDiv("textBox");
         this.scrollBar=getSpan("scrollBar");
         this.scrollBarHandle=getDiv("scrollBarHandle");
-		this.scrollBarHandle.onmousedown=this.scrollBar.onmousedown=this.content.onmousedown=this.doScroll;
-		this.scrollBarHandle.ontouchstart=this.scrollBar.ontouchstart=this.content.ontouchstart=this.doScroll;
-		this.main.ontouchmove=this.main.onmousemove=this.updateScroll;
-		this.main.onwheel=this.mouseWheelScroll;
+	this.scrollBarHandle.onmousedown=this.scrollBar.onmousedown=this.content.onmousedown=this.doScroll;
+	this.scrollBarHandle.ontouchstart=this.scrollBar.ontouchstart=this.content.ontouchstart=this.doScroll;
+	this.main.ontouchmove=this.main.onmousemove=this.updateScroll;
+	this.main.onwheel=this.mouseWheelScroll;
         this.scrollBar.appendChild(this.scrollBarHandle);
         this.main.appendChild(this.content);
         this.main.appendChild(this.scrollBar);
@@ -18,9 +18,9 @@ class TextBox {
         this.scrollBarHandlePosition=0;
         this.source=-1;//-1 = no scroll, 0 = scrollBar, 1 = scrollBarHandle, 2 = content
         this.update();
-		let body=document.getElementsByTagName("BODY")[0];
-		body.onresize=this.updateAll;
-		body.onmouseleave=body.onscroll=body.onmouseup=this.stopScroll;
+	let body=document.getElementsByTagName("BODY")[0];
+	body.onresize=this.updateAll;
+	body.onmouseleave=body.onscroll=body.onmouseup=this.stopScroll;
     }
     stopScroll(){
     	for(let textBox in textBoxes){
@@ -63,8 +63,8 @@ class TextBox {
 			}
 		}else if(this.className=="content"){
 			current=textBoxes[this.parentNode.id];
-        	current.contentGrabPosition=(arguments[0].clientY||arguments[0].touches[0].clientY)-current.mainPosition;
-        	current.contentDragStartPosition=current.contentPosition;
+        		current.contentGrabPosition=(arguments[0].clientY||arguments[0].touches[0].clientY)-current.mainPosition;
+        		current.contentDragStartPosition=current.contentPosition;
 			current.source=2;
 		}
 	}
@@ -119,7 +119,7 @@ class TextBox {
 	mouseDragScroll(y){
 		this.contentPosition=this.contentDragStartPosition+y-this.mainPosition-this.contentGrabPosition;
 		if(this.contentPosition>0){
-    		this.contentPosition=this.scrollBarHandlePosition=0;
+    			this.contentPosition=this.scrollBarHandlePosition=0;
 		}else if(this.contentPosition<this.heightDifference){
 			this.contentPosition=this.heightDifference;
 			this.scrollBarHandlePosition=this.scrollBarDifference;
@@ -129,20 +129,20 @@ class TextBox {
 		}
 		this.applyScroll();
 	}
-    mouseWheelScroll(){
+	mouseWheelScroll(){
 		let current=textBoxes[this.id];
-    	current.contentPosition+=arguments[0].deltaY*-12;
-    	if(current.contentPosition>0){
-    		current.contentPosition=current.scrollBarHandlePosition=0;
-		}else if(current.contentPosition<current.heightDifference){
-			current.contentPosition=current.heightDifference;
-			current.scrollBarHandlePosition=current.scrollBarDifference;
-		}else{
-			current.setPercentage(current.contentPosition/current.heightDifference);
-			current.scrollBarHandlePosition=current.currentPercentage*current.scrollBarDifference;
-		}
+    		current.contentPosition+=arguments[0].deltaY*-12;
+    		if(current.contentPosition>0){
+    			current.contentPosition=current.scrollBarHandlePosition=0;
+			}else if(current.contentPosition<current.heightDifference){
+				current.contentPosition=current.heightDifference;
+				current.scrollBarHandlePosition=current.scrollBarDifference;
+			}else{
+				current.setPercentage(current.contentPosition/current.heightDifference);
+				current.scrollBarHandlePosition=current.currentPercentage*current.scrollBarDifference;
+			}
 		current.applyScroll();
-    }
+	}
 	scrollToPercentage(){
 		this.contentPosition=this.currentPercentage*this.heightDifference;
 		this.scrollBarHandlePosition=this.currentPercentage*this.scrollBarDifference;
@@ -163,11 +163,11 @@ function adjustHeight(el,value){
 	el.style.height=value+"px";
 }
 function getOffset(el) {
-    var rect = el.getBoundingClientRect(),
-    //scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    //return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-    return rect.top + scrollTop
+	var rect = el.getBoundingClientRect(),
+	//scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	//return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+	return rect.top + scrollTop
 }
 function getDiv(className){
 	let div=document.createElement("DIV");
