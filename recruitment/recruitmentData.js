@@ -1206,7 +1206,7 @@ var digimon=[
 		region:"Freezeland",
 		trigger:"Sick Digimon weak against cold",
 		location:"Igloo Screen",
-		requirement:"Take a Digimon that doesn't like cold and make it sick. Easiest way to get sick is using Moldy Meat (can be bought at the vending machine in Ancient Dino Region).<br />Once sick you have to go to a certain spot to trigger the event. So just walk around a bit in Freezeland till your Digimon 'passes out'.<br />After that get another Digimon, that doesn't not like the cold and talk to Frigimon again, making him joining the city.",
+		requirement:"Take a Digimon that doesn't like cold and make it sick. Easiest way to get sick is using Moldy Meat (can be bought at the vending machine in Ancient Dino Region).<br />Once sick you have to go to a certain spot to trigger the event. So just walk around a bit in Freezeland till your Digimon 'passes out'.<br />After that get another Digimon, that doesn't not like the cold and talk to Frigimon again, making him joining the city.<br /> The Digimon you can use for this are Botamon, Koromon, Agumon, Greymon, Tyrannomon, Meramon, Punimon, Tsunomon, Kabuterimon, Birdramon, Poyomon, Tokomon, Kunemon, Yuramon, Tanemon, Monochromon and Kuwagamon.",
 		unlocks:"Restaurant",
 		angemonTip:"Taking a Digimon, who loves hot places, to a cold place is against the rules, but...",
 		enemies:[],
