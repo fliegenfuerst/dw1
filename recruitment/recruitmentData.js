@@ -1106,7 +1106,7 @@ var digimon=[
 		region:"Freezeland",
 		trigger:"None",
 		location:"There are 3 Mojyamon, all can be reached from the same screen where you can enter Penguinmon's screen. (Lower right side and south side)",
-		requirement:"Each Mojyamon offers 3 trades and the last Mojyamon you traded with will join your town once you've traded all trades at least once.<br />You'll need the following Items: Digimushroom, Supercarrot, Happymushroom, Giant Meat, Black Trout, Hispeed Disk, Omnipotent, med. recovery and Digianchovy.",
+		requirement:"Each Mojyamon offers 3 trades and the last Mojyamon you traded with will join your town once you've traded all trades at least once.<br />You'll need the following Items: <br />Bottom screen, left Mojyamon<br />Omnipotent (S.Off.disk), med.recovery (S.Def.disk), Digianchovy (S.speed.disk)<br />Bottom screen right Mojyamon<br />Giant Meat (Auto Pilot), Black trout (Restore), Hispeed dsk (Medicine)<br />Right screen Mojyamon<br />Digimushrm (med.recovery), Supercarrot (Omnipotent), Happymushrm (Hair grower)",
 		unlocks:"Secret shop - sells Rest pillow (more sleep regen) and health shoes (HP+MP regen while walking)",
 		angemonTip:"Help Digimon that love to collect things. Try going to Freezeland.",
 		enemies:[],
