@@ -455,7 +455,7 @@ function getWorstCase(enemy){
 	var highest={value:0,move:""};
 	var current={};
 	for(var em=0;em<enemy.moves.length;em++){
-		current={value:getDamage({power:movs[enemy.moves[em].name].power,speciality:movs[enemy.moves[em].name].speciality},enemy.stats.offense,gui.currentDigimon.specialities,this.partner.def.value),move:enemy.moves[em].name};
+		current={value:getDamage(movs[enemy.moves[em].name].power,movs[enemy.moves[em].name].speciality,enemy.stats.offense,gui.currentDigimon.specialities,this.partner.def.value),move:enemy.moves[em].name};
 		if(highest.value<current.value){
 			highest=current;
 		}
@@ -469,8 +469,8 @@ function getWorstCaseRaw(enemy){
 	var current={};
 	for(var em=0;em<enemy.moves.length;em++){
 if(movs[enemy.moves[em].name]!==undefined){
-
-		current={value:getDamageRaw({power:movs[enemy.moves[em].name].power,speciality:movs[enemy.moves[em].name].speciality},gui.currentDigimon.specialities),move:enemy.moves[em].name};
+console.log(gui.currentDigimon.specialities);
+		current={value:getDamageRaw(movs[enemy.moves[em].name].power,movs[enemy.moves[em].name].speciality,gui.currentDigimon.specialities),move:enemy.moves[em].name};
 		if(highest.value<current.value){
 			highest=current;
 		}
