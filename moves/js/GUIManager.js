@@ -469,7 +469,6 @@ function getWorstCaseRaw(enemy){
 	var current={};
 	for(var em=0;em<enemy.moves.length;em++){
 if(movs[enemy.moves[em].name]!==undefined){
-console.log(gui.currentDigimon.specialities);
 		current={value:getDamageRaw(movs[enemy.moves[em].name].power,movs[enemy.moves[em].name].speciality,gui.currentDigimon.specialities),move:enemy.moves[em].name};
 		if(highest.value<current.value){
 			highest=current;
