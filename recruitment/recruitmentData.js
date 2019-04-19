@@ -1744,3 +1744,4 @@ var digimon=[
 		prosperityPoints:3,
 	},
 ];
+//test
