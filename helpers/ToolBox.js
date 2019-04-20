@@ -12,6 +12,7 @@ class ToolBox{
 		return label;
 	}
 	static getElement(type,id,clas,innerHTML,func){//div,span
+
 		let element = document.createElement(type);
 		if(clas!==(undefined||false)){
 			element.className=clas;
@@ -19,8 +20,12 @@ class ToolBox{
 		if(id!==(undefined||false)){
 			element.id=id;
 		}
-		if(innerHTML!==(undefined||false)){
-			element.innerHTML=innerHTML;
+		if(type=="IMG"){
+			element.src=innerHTML;
+		}else{
+			if(innerHTML!==(undefined||false)){
+				element.innerHTML=innerHTML;
+			}
 		}
 		if(func!==(undefined||false)){
 			element.onclick=func;
@@ -185,4 +190,38 @@ function getElement(type,id,clas,innerHTML){//div,span
 		element.innerHTML=innerHTML;
 	}
 	return element;
+}
+function adjustHeight(el,value){
+	el.style.minHeight=value+"px";
+	el.style.maxHeight=value+"px";
+	el.style.height=value+"px";
+}
+function adjustWidth(el,value){
+	el.style.minWidth=value+"px";
+	el.style.maxWidth=value+"px";
+	el.style.width=value+"px";
+}
+function getOffsetY(el) {
+    let rect = el.getBoundingClientRect(),
+    //scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    //return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+    return rect.top + scrollTop
+}
+function getOffsetX(el) {
+    let rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    //scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    //return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+    return rect.left + scrollLeft
+}
+function getDiv(className){
+	let div=document.createElement("DIV");
+	div.className=className;
+	return div;
+}
+function getSpan(className){
+	let span=document.createElement("SPAN");
+	span.className=className;
+	return span;
 }
