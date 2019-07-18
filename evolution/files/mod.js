@@ -46,7 +46,9 @@ function Digimon(name, statsGains, requirements) {
 		if (requirements.techs != 0) {
 			string += 'No. of Techs: ' + requirements.techs + '.<br>';
 		}
-		if (requirements.battles > 0) {
+		if (requirements.minBattles) {
+			string += 'Max No. of Battles: ' + requirements.battles + '.<br>';
+		} else {
 			string += 'Min No. of Battles: ' + requirements.battles + '.<br>';
 		}
 		if (requirements.digimonBonus != ('' || undefined)) {
@@ -102,8 +104,6 @@ function uDigimon(name){
 		div = div + "<option class='digimon' style='background-image: url(";
 		div = div + '"./img/'+this.name+'.gif")';
 		div = div + "'>" + this.name + "</option>";
-
-		
 		return div;
 	}
 }
@@ -114,37 +114,6 @@ var dChampion;
 
 dInTraining=[new uDigimon("Koromon"),new uDigimon("Tokomon"),new uDigimon("Tsunomon"),new uDigimon("Tanemon")];
 dRookie=[new uDigimon("Agumon"),new uDigimon("Gabumon"),new uDigimon("Patamon"),new uDigimon("Elecmon"),new uDigimon("Biyomon"),new uDigimon("Palmon"),new uDigimon("Betamon"),new uDigimon("Penguinmon"),new uDigimon("Kunemon")];
-/*var tD=new uDigimon("Agumon");
-tD.sources.push("Koromon");
-dRookie.push(tD);
-tD=new uDigimon("Gabumon");
-tD.sources.push("Koromon");
-dRookie.push(tD);
-tD=new uDigimon("Patamon");
-tD.sources.push("Tokomon");
-dRookie.push(tD);
-tD=new uDigimon("Biyomon");
-tD.sources.push("Tokomon");
-dRookie.push(tD);
-tD=new uDigimon("Elecmon");
-tD.sources.push("Tsunomon");
-dRookie.push(tD);
-tD=new uDigimon("Penguinmon");
-tD.sources.push("Tsunomon");
-dRookie.push(tD);
-tD=new uDigimon("Palmon");
-tD.sources.push("Tanemon");
-dRookie.push(tD);
-tD=new uDigimon("Betamon");
-tD.sources.push("Tanemon");
-dRookie.push(tD);
-tD=new uDigimon("Kunemon");
-tD.sources.push("Koromon");
-tD.sources.push("Tokomon");
-tD.sources.push("Tsunomon");
-tD.sources.push("Tanemon");
-dRookie.push(tD);
-*/
 dChampion=[new uDigimon("Greymon"),new uDigimon("Meramon"),new uDigimon("Birdramon"),new uDigimon("Centarumon"),new uDigimon("Monochromon"),new uDigimon("Drimogemon"),new uDigimon("Tyrannomon"),new uDigimon("Ogremon"),new uDigimon("Leomon"),new uDigimon("Angemon"),new uDigimon("Bakemon"),new uDigimon("Airdramon"),new uDigimon("Kokatorimon"),new uDigimon("Unimon"),new uDigimon("Kabuterimon"),new uDigimon("Kuwagamon"),new uDigimon("Vegiemon"),new uDigimon("Ninjamon"),new uDigimon("Seadramon"),new uDigimon("Whamon"),new uDigimon("Shellmon"),new uDigimon("Coelamon"),new uDigimon("Garurumon"),new uDigimon("Frigimon"),new uDigimon("Mojyamon"),new uDigimon("Numemon"),new uDigimon("Sukamon"),new uDigimon("Nanimon")];
 
 var dUltimate=[new uDigimon("MetalGreymon"),new uDigimon("Andromon"),new uDigimon("SkullGreymon"),new uDigimon("Megadramon"),new uDigimon("Giromon"),new uDigimon("Phoenixmon"),new uDigimon("Devimon"),new uDigimon("H-Kabuterimon"),new uDigimon("Piximon"),new uDigimon("MetalMamemon"),new uDigimon("Mamemon"),new uDigimon("MegaSeadramon"),new uDigimon("Monzaemon"),new uDigimon("Digitamamon"),new uDigimon("Etemon"),new uDigimon("Vademon")];
@@ -203,9 +172,6 @@ function populate() {
 	EvolutionPaths['Numemon'] = new EvolutionPath(['Monzaemon', 'Vademon', 'Sukamon']);
 	EvolutionPaths['Sukamon'] = new EvolutionPath(['Etemon', 'Vademon']);
 	EvolutionPaths['Nanimon'] = new EvolutionPath(['Digitamamon', 'Vademon', 'Sukamon']);
-
-
-
 
 	EvolutionPaths['MetalGreymon'] = new EvolutionPath([]);
 	EvolutionPaths['Andromon'] = new EvolutionPath([]);
@@ -293,9 +259,6 @@ function populate() {
 	Digimons['Piximon'] = new Digimon('Piximon', new StatsGains(3000, 3000, 500, 500, 600, 600), new EvolutionRequirements(0, 0, 300, 300, 400, 400, 15, 5, 0, 95, -1, 25, false, false));
 	Digimons['SkullGreymon'] = new Digimon('SkullGreymon', new StatsGains(5000, 5000, 600, 600, 400, 400), new EvolutionRequirements(4000, 6000, 400, 400, 200, 500, 10, 30, 0, 0, 40, 45, false, false));
 	Digimons['Vademon'] = new Digimon('Vademon', new StatsGains(5000, 5000, 500, 500, 500, 500), new EvolutionRequirements(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, false, false));
-
-
-
 }
 
 function getSpecialOutput(target) {
@@ -352,92 +315,48 @@ var longT;
 
 
 for(var r=0;r<dInTraining.length;r++){
-//	dInTraining[r].targets=EvolutionPaths[dInTraining[r].name].targets;
-for(var c=0;c<EvolutionPaths[dInTraining[r].name].targets.length;c++){
+	for(var c=0;c<EvolutionPaths[dInTraining[r].name].targets.length;c++){
 
-	var tStr=EvolutionPaths[dInTraining[r].name].targets[c];
-	for(var f=0;f<dRookie.length;f++){
-		if(tStr==dRookie[f].name){
-			dRookie[f].sources.push(dInTraining[r]);
-//			alert(dInTraining[r].name);
-			//alert(dInTraining[r].name);
-			break;
+		var tStr=EvolutionPaths[dInTraining[r].name].targets[c];
+		for(var f=0;f<dRookie.length;f++){
+			if(tStr==dRookie[f].name){
+				dRookie[f].sources.push(dInTraining[r]);
+				break;
+			}
 		}
 	}
-	//dInTraining[r].targets.push(tStr);	
-}
 }
 
-//var id;
-    dRookie.sort(alphabetical);
-/*for(var z=0;z<dRookie.length;z++){
-//    dRookie[z].sort(alphabetical);
-	longT=dRookie[z].sources.length;
-		
-		if(longest<longT){
-			longest=longT;
-			id=z;
-		}
-}
-//	alert("rookie"+longest+" "+dRookie[id].sources);
-longest=0;
-longT=0;
-*/
+dRookie.sort(alphabetical);
+
 for(var r=0;r<dRookie.length;r++){
-//	dInTraining[r].targets=EvolutionPaths[dInTraining[r].name].targets;
-for(var c=0;c<EvolutionPaths[dRookie[r].name].targets.length;c++){
-
-	var tStr2=EvolutionPaths[dRookie[r].name].targets[c];
-	for(var fR=0;fR<dChampion.length;fR++){
-		if(tStr2==dChampion[fR].name){
-			dChampion[fR].sources.push(dRookie[r]);
-			//alert(dRookie[rC].name);
-			break;
+	for(var c=0;c<EvolutionPaths[dRookie[r].name].targets.length;c++){
+		var tStr2=EvolutionPaths[dRookie[r].name].targets[c];
+		for(var fR=0;fR<dChampion.length;fR++){
+			if(tStr2==dChampion[fR].name){
+				dChampion[fR].sources.push(dRookie[r]);
+				break;
+			}
 		}
 	}
-	//dInTraining[r].targets.push(tStr2);	
-}
 }
 
-    dChampion.sort(alphabetical);
-/*
-longest=0;
-longT=0;
-for(var p=0;p<dChampion.length;p++){
-	longT=dChampion[p].sources.length;
-		if(longest<longT){
-			longest=longT;
-		}
-}
-//	alert("champ"+longest);
-longest=0;
-longT=0;
-*/
+dChampion.sort(alphabetical);
+
 for(var r=0;r<dChampion.length;r++){
-for(var c=0;c<EvolutionPaths[dChampion[r].name].targets.length;c++){
-	var tStr=EvolutionPaths[dChampion[r].name].targets[c];
-	for(var f=0;f<dUltimate.length;f++){
-		if(tStr==dUltimate[f].name){
-			dUltimate[f].sources.push(dChampion[r]);
-			break;
+	for(var c=0;c<EvolutionPaths[dChampion[r].name].targets.length;c++){
+		var tStr=EvolutionPaths[dChampion[r].name].targets[c];
+		for(var f=0;f<dUltimate.length;f++){
+			if(tStr==dUltimate[f].name){
+				dUltimate[f].sources.push(dChampion[r]);
+				break;
+			}
 		}
 	}
 }
 
-}
-    dUltimate.sort(alphabetical);
-/*
-for(var q=0;q<dUltimate.length;q++){
-	
-//    dUltimate[q].sort(alphabetical);
-	longT=dUltimate[q].sources.length;
-		
-		if(longest<longT){
-			longest=longT;
-		}
-}
-//	alert(longest);
-*/
+dUltimate.sort(alphabetical);
+
 getUltimatesR();
 getChampionsC();
 getRookiesRook();
@@ -452,11 +371,11 @@ getRookiesRook();
 	div = div + "</select></div>";
 	document.getElementById('evLi').innerHTML = '';
 	document.getElementById('evLi').innerHTML = div;
-		document.getElementById("starter").style='background-image: url("./img/Koromon.gif")';
+	document.getElementById("starter").style='background-image: url("./img/Koromon.gif")';
 	getRookies('Koromon');
-		document.getElementById("rookie").style='background-image: url("./img/Agumon.gif")';
-		document.getElementById("champion").style='background-image: url("./img/Greymon.gif")';
-		document.getElementById("ultimate").style='background-image: url("./img/MetalGreymon.gif")';
+	document.getElementById("rookie").style='background-image: url("./img/Agumon.gif")';
+	document.getElementById("champion").style='background-image: url("./img/Greymon.gif")';
+	document.getElementById("ultimate").style='background-image: url("./img/MetalGreymon.gif")';
 }
 
 function getRookies(in_training) {
@@ -475,7 +394,7 @@ function getRookies(in_training) {
 	div = div + "</select></div>";
 	document.getElementById('evLi2').innerHTML = '';
 	document.getElementById('evLi2').innerHTML = div;
-		document.getElementById("rookie").style='background-image: url("./img/'+ePath.targets[0]+'.gif")';
+	document.getElementById("rookie").style='background-image: url("./img/'+ePath.targets[0]+'.gif")';
 
 	getChampions(ePath.targets[0]);
 }
@@ -528,7 +447,7 @@ function getUltimates(champion) {
 	document.getElementById('evLi4').innerHTML = '';
 	document.getElementById('evLi4').innerHTML = div;
 	document.getElementById('ultiReq').innerHTML = Digimons[ePath.targets[0]].getEvolutionStats();
-		document.getElementById("ultimate").style='background-image: url("./img/'+ePath.targets[0]+'.gif")';
+	document.getElementById("ultimate").style='background-image: url("./img/'+ePath.targets[0]+'.gif")';
 
 	if (isSpecialEvolution(champion)) {
 		document.getElementById('champReq').innerHTML = getSpecialOutput(champion);
@@ -549,19 +468,19 @@ function listClicked(name) {
 	var x = document.getElementById(name).value;
 	switch(name) {
 		case 'starter':
-		document.getElementById(name).style='background-image: url("./img/'+x.split("/")[2]+'.gif")';
+			document.getElementById(name).style='background-image: url("./img/'+x.split("/")[2]+'.gif")';
 			getRookies(x.split("/")[2]);
 			break;
 		case 'rookie':
-		document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
+			document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
 			getChampions(x);
 			break;
 		case 'champion':
-		document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
+			document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
 			getUltimates(x);
 			break;
 		case 'ultimate':
-		document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
+			document.getElementById(name).style='background-image: url("./img/'+x+'.gif")';
 			getUlt(x);
 			break;
 	}
