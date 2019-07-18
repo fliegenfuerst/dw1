@@ -46,10 +46,12 @@ function Digimon(name, statsGains, requirements) {
 		if (requirements.techs != 0) {
 			string += 'No. of Techs: ' + requirements.techs + '.<br>';
 		}
-		if (requirements.minBattles) {
-			string += 'Max No. of Battles: ' + requirements.battles + '.<br>';
-		} else {
-			string += 'Min No. of Battles: ' + requirements.battles + '.<br>';
+		if(requirements.battles > -1){
+			if (requirements.minBattles) {
+				string += 'Max No. of Battles: ' + requirements.battles + '.<br>';
+			} else {
+				string += 'Min No. of Battles: ' + requirements.battles + '.<br>';
+			}
 		}
 		if (requirements.digimonBonus != ('' || undefined)) {
 			string += 'BonusDigimon: ' + requirements.digimonBonus + '.<br>';
