@@ -108,7 +108,7 @@ var digimon=[
 		maps:[],
 		recruitMap:"MAYO05",
 		region:"Native Forest",
-		trigger:"16:00-19:59",
+		trigger:"15:00-19:59",
 		location:"southeast from Kunemon's bed",
 		requirement:"Go to his screen at dusk (16:00-19:59) and he will swim there. Talk to him, he will bring you to the jungle. Go north and over the now repaired Digimon bridge and go back where you found Coelamon the first time.<br />Talk to him again and he'll join the town.",
 		unlocks:"Shop",
