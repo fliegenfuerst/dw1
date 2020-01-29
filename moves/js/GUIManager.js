@@ -172,7 +172,7 @@ function GUIManager(){
 		var nature=brainArr[0].nature;
 		var block=false;
 		if(brainArr.length>0){
-			brainArr=sortBrain(brainArr);
+			brainArr=sortSimple(brainArr,"chance").reverse();
 			for(var i=0;i<brainArr.length;i++){
 				if(brainArr[i].nature==1&&brainArr[i].name==starterMoves[brainArr[i].speciality]){
 				}else{
