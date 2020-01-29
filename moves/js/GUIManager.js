@@ -148,23 +148,9 @@ function GUIManager(){
 				moveRow.appendChild(tb.getInput("button",partner.moves[m],showMove,"cell isLearned1"));
 			}
 			moveRow.appendChild(getElement("span",false,"cell alignRight",getLearningChance(move,partner.specialities)));
-			moveRow.appendChild(getElement("span",false,"cell alignRight",getBrainLearningChance(move,partner.specialities)));
+			moveRow.appendChild(getElement("span",false,"cell alignRight",getBrainLearningChance(move,partner.specialities)+"%"));
 			this.partner.moveList.appendChild(moveRow);
 		}
-		/*
-		for(var u=1;u<this.partner.moveList.childNodes.length;u++){
-			if(this.partner.moveList.childNodes[u].childNodes[1].type=="button"){
-				this.partner.moveList.childNodes[u].childNodes[1].click();
-				break;
-			}
-			if(u==this.partner.moveList.childNodes.length-1){
-
-				this.moveTitle.innerText="";
-				this.enemyDiv.innerHTML="";
-				this.moveDetailDiv.innerHTML="";
-			}
-		}
-		*/
 		this.showBrainMoves(brainArr);
 	};
 	this.showBrainMoves=function(brainArr){
@@ -180,7 +166,7 @@ function GUIManager(){
 						nature=brainArr[i].nature;
 						block=false;
 					}
-					if(brainArr[i].chance=="0%"){
+					if(brainArr[i].chance==0){
 						block=true;
 					}
 					if(block){
@@ -243,26 +229,6 @@ function GUIManager(){
 		enemyRow.appendChild(getElement("span",false,"cell alignRight","Spd"));
 		enemyRow.appendChild(getElement("span",false,"cell alignRight","Brn"));
 		this.enemyDiv.appendChild(enemyRow);
-		/*var enemy=null;
-		for(var e=0;e<curEnemies.length;e++){
-			//var drop=stats.find(x => x.name==curEnemies[e].name);
-			var drop=drops[curEnemies[e].name];
-			enemyRow=getElement("span",false,"row",false);
-			enemyRow.appendChild(getElement("span",false,"cell",getWorstCase(curEnemies[e])));
-			mapE=maps.find(x=>x.internalName===curEnemies[e].map);
-			enemyRow.appendChild(getElement("span",false,"cell",mapE.name+"<br>"+mapE.description));
-			enemyRow.appendChild(getElement("span",false,"cell",curEnemies[e].name));
-			enemyRow.appendChild(getElement("span",false,"cell",curEnemies[e].moves.find(x => x.name===move).chance));
-			enemyRow.appendChild(getElement("span",false,"cell",drop.item));
-			enemyRow.appendChild(getElement("span",false,"cell",drop.chance));
-			enemyRow.appendChild(getElement("span",false,"cell",curEnemies[e].bits));
-			for(var s=0;s<6;s++){
-				enemyRow.appendChild(getElement("span",false,"cell",curEnemies[e].stats[statNames[s]]));
-			}
-
-			this.enemyDiv.appendChild(enemyRow);
-		}
-		*/
 		for(var i=0;i<this.curEnemyModel.length;i++){
 			enemyRow=getElement("span",false,"row",false);
 			this.curEnemyModel[i].worstcase=Math.floor(this.curEnemyModel[i].worstCaseRaw.value*getStatsFactor(defense,this.curEnemyModel[i].offense));
@@ -333,17 +299,17 @@ function GUIManager(){
 		moveRow=getElement("span",false,"row",false);
 		moveRow.appendChild(getElement("span",false,"cell","1st Nature:"));
 		moveRow.appendChild(getElement("span",false,"cell",move.learningChance[0]));
-		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][0]));
+		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][0]+"%"));
 		this.moveDetailDiv.appendChild(moveRow);
 		moveRow=getElement("span",false,"row",false);
 		moveRow.appendChild(getElement("span",false,"cell","2nd Nature:"));
 		moveRow.appendChild(getElement("span",false,"cell",move.learningChance[1]));
-		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][1]));
+		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][1]+"%"));
 		this.moveDetailDiv.appendChild(moveRow);
 		moveRow=getElement("span",false,"row",false);
 		moveRow.appendChild(getElement("span",false,"cell","3rd Nature:"));
 		moveRow.appendChild(getElement("span",false,"cell",move.learningChance[2]));
-		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][2]));
+		moveRow.appendChild(getElement("span",false,"cell",tiers[move.tier-1][2]+"%"));
 		this.moveDetailDiv.appendChild(moveRow);
 		hM.setHash(this.currentDigimon.name,this.currentMove.name);
 	};
@@ -414,6 +380,7 @@ function getBrainArrEntry(move,types){
 	return {name:move.name,speciality:move.speciality,nature:nature,tier:move.tier,chance:chance};
 }
 function sortBrain(brainArr){
+	console.log(brainArr);
 	brainArr=sortSimple(brainArr,"tier");
 	brainArr=sortSimple(brainArr,"nature");
 	var arr=[];
