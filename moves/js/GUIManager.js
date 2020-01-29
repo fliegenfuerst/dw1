@@ -157,7 +157,6 @@ function GUIManager(){
 		this.brainList.innerHTML="";
 		var nature=brainArr[0].nature;
 		var block=false;
-		console.log(brainArr);
 		if(brainArr.length>0){
 			brainArr=sortSimple(brainArr,"chance").reverse();
 			for(var i=0;i<brainArr.length;i++){
