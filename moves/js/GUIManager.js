@@ -157,6 +157,7 @@ function GUIManager(){
 		this.brainList.innerHTML="";
 		var nature=brainArr[0].nature;
 		var block=false;
+		console.log(brainArr);
 		if(brainArr.length>0){
 			brainArr=sortSimple(brainArr,"chance").reverse();
 			for(var i=0;i<brainArr.length;i++){
@@ -358,6 +359,7 @@ function getLearningChance(move,types){
 			return move.learningChance[i];
 		}
 	}
+	return "0%";
 }
 function getBrainLearningChance(move,types){
 	var type=move.speciality;
@@ -366,10 +368,12 @@ function getBrainLearningChance(move,types){
 			return tiers[move.tier-1][i];
 		}
 	}
+	return 0;
 }
 function getBrainArrEntry(move,types){
 	var type=move.speciality;
-	var nature,chance;
+	var nature
+	let chance=0;
 	for(var i=0;i<3;i++){
 		if(type==types[i]){
 			nature=i+1;
