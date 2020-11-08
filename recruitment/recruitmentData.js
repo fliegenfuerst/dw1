@@ -1,4 +1,4 @@
-var digimon=[
+const digimon=[
 	{
 		recruited:false,
 		name:"Agumon",
@@ -252,8 +252,8 @@ var digimon=[
 		maps:[],
 		recruitMap:"TWNA02",
 		region:"File City",
-		trigger:"15pp & leave Jijimon's hut",
-		location:"When you talk to Jijimon and leave his house with a prosperity rate of 15 or higher.",
+		trigger:"15pp & leave Jijimon's hut with Champion or Ultimate Level Digimon",
+		location:"When you talk to Jijimon and leave his house with a prosperity rate of 15 or higher and a Digimon of either Champion or Ultimate Level. (If you talk to Jijimon meeting these conditions the trigger for Greymon's attack is set. If your partner dies while this is the case, Greymon will attack you once you cross the trigger outside Jijimon's hut even if your partners level is below Champion)",
 		requirement:"win the fight against him",
 		unlocks:"Arena",
 		angemonTip:"Some Digimon may know about you and challenge you.",
