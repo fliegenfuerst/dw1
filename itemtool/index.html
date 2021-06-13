@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="css/style.css" type="text/css"/>
+		<title>Digimon World Item Tool</title>
+	</head>
+	<body>
+		<script>
+		const textBoxes={};
+const lang="eng";
+function attachToolTip(div,text){
+	//div.onmouseenter=showDescription;
+	//div.onmouseleave=hideDescription;
+	div.setAttribute("tipText",text);
+	div.setAttribute("onmouseover","showToolTip(event)");
+	div.setAttribute("onmouseout","hideToolTip(event)");
+	return div;
+}
+	</script>
+		<script type="text/javascript" src="https://fliegenfuerst.github.io/dw1/helpers/ToolBox.js"></script>
+		<script type="text/javascript" src="js/itemsDigivolve.js"></script>
+		<script type="text/javascript" src="digis2.js"></script>
+		<script type="text/javascript" src="js/enemies2.js"></script>
+		<script type="text/javascript" src="js/techniques.js"></script>
+		<script type="text/javascript" src="js/enemies.js"></script>
+		<script type="text/javascript" src="js/stats.js"></script>
+		<script type="text/javascript" src="js/maps.js"></script>
+		<script type="text/javascript" src="js/chests.js"></script>
+		<script type="text/javascript" src="js/shops.js"></script>
+		<script type="text/javascript" src="js/DropDown.js"></script>
+		<script type="text/javascript" src="js/ScrollBar.js"></script>
+		<script type="text/javascript" src="js/TextBox.js"></script>
+		<script type="text/javascript" src="js/ScrollableTextBox.js"></script>
+		<script type="text/javascript" src="js/ScrollableTextBox2.js"></script>
+		<script type="text/javascript" src="js/MapTextBox.js"></script>
+		<script type="text/javascript" src="js/TabbedTextBox.js"></script>
+		<script type="text/javascript" src="js/ItemListTextBox.js"></script>
+		<script type="text/javascript">
+
+const body=document.getElementsByTagName("BODY")[0];
+body.onresize=updateAll;
+//body.onmouseleave=body.onmouseout=
+document.onscroll=document.onmouseup=document.ontouchstop=stopScroll;
+//document.setAttribute("onscroll","stopScroll()");
+console.log(body.onscroll);
+
+const toolTip=ToolBox.getElement("SPAN","toolTip","textBox hidden",false,false);
+body.appendChild(toolTip);
+var toolTipActive=false;
+//const selectionBackground=ToolBox.getElement("DIV",false,"listItemActive",false,false);
+
+
+textBoxes.itemList=new ItemListTextBox("itemList",body,850,400);
+
+let testar=ToolBox.getElement("DIV",`testDiv`,"listItem","for test reasons",false);
+let testar2=ToolBox.getElement("DIV",`testDiv2`,"listItem","for test reasons2",false);
+textBoxes.itemDetails=new TextBox("itemDetails",body,itemDetails,850,24);
+//textBoxes.toolTip=new TextBox("toolTip",document.getElementsByTagName("BODY")[0],toolTip);
+	//textBoxes.toolTip.hide();
+
+//textBoxes.itemList=new ItemListTextBox("places",body,[{name:"spawn",content:testar},{name:"chest",content:testar2},{name:"drop",content:testar},{name:"other",content:testar2}],850,400);
+
+    //console.log(maps[0]);
+    //let mappu=new CollisionMap();
+    /*console.log(mappu.canvasSpan);
+    console.log(mappu);
+    let mapu=ToolBox.getElement("SPAN",false,"content",false,false);
+    mapu.appendChild(mappu.container);*/
+	textBoxes.mapTextBox=new MapTextBox("mapTextBox",body,640,740);
+	//new ScrollBar(textBoxes.mapTextBox);
+
+
+
+function stopScroll(){
+	for(let textBox in textBoxes){
+		if(textBoxes[textBox] instanceof ScrollableTextBox || textBoxes[textBox] instanceof ScrollableTextBox2){
+			textBoxes[textBox].stopScroll();
+		}
+	}
+}
+function updateAll(){
+	for(let textBox in textBoxes){
+		textBoxes[textBox].update();
+	}
+}
+var selectedItem=0;
+itemDetails.innerHTML=items[selectedItem].description.eng;
+itemDetails.innerText="test";
+function showDescription(){
+	itemDetails.innerText=items[arguments[0].target.id.split("-")[1]].description.eng;
+}
+function hideDescription(){
+	itemDetails.innerText="";
+}
+function hideToolTip(){
+	if(!toolTip.classList.contains("hidden")&&toolTipActive){
+		toolTip.classList.add("hidden");
+		toolTipActive=false;
+	}
+}
+function showToolTip(){
+	if(toolTip.classList.contains("hidden")&&!toolTipActive){
+		toolTip.classList.remove("hidden");
+		toolTip.style.top=getOffsetY(arguments[0].target)+arguments[0].target.offsetHeight+"px";
+		toolTip.style.left=getOffsetX(arguments[0].target)+arguments[0].target.offsetWidth+"px";
+		toolTip.innerText=arguments[0].target.getAttribute("tiptext");
+		toolTipActive=true;
+	}
+}
+
+
+/*	itemDiv.innerHTML+=
+`			<img class="itemSprite" src="img/itemSprites/item_${ToolBox.addZeros(items[i].id+1,3)}.png"/>
+		<span class="itemName itemColor${items[i].color}">
+			${items[i].name.eng}
+		</span><span>${getLocations(items[i].locations)}</span>`;
+	itemList.innerHTML+=
+	`<div class="listItem" id="item-${items[i].id}" onmouseover="showDescription(this)" onmouseleave="hideDescription(this)">
+	<div class="shadowBottomRight listItemActive hidden"></div>
+		<span>
+			<img class="itemSprite" src="img/itemSprites/item_${ToolBox.addZeros(items[i].id+1,3)}.png"/>
+		</span>
+		<span class="itemName itemColor${items[i].color}">
+			${items[i].name.eng}
+		</span><span>`;
+	itemList.innerHTML+=getLocations(items[i].locations);
+itemList.innerHTML+=
+`	</span></div>`;
+
+/**
+ * Returns keys that satisfy the queries
+ * @param {Object} object 
+ * @param  {string[]} queries 
+ */
+/*
+const pooSearch = (object, ...queries) => {
+    let objKeys = Object.keys(object);
+
+    for (let query of queries) {
+        const querySpl = query.split(":");
+        const key = querySpl[0];
+
+        let value = querySpl[1];
+        if (!isNaN(value)) value = Number(value);
+
+        objKeys = objKeys.filter(oKey => object[oKey][key] === value);
+    }
+
+    return objKeys;
+};
+
+const matches = pooSearch(object, "symbol_native:$", "rounding:0");
+
+console.log(matches); // [] of keys satisfying the queries
+*/
+		</script>
+	</body>
+</html>
+
+
+
+

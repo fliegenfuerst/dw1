@@ -1,0 +1,542 @@
+
+/*beginning global style*/
+@font-face {
+    font-family: "dw1"; /*a name to be used later*/
+    src: url("fonts/digimonworld_textbox_v2.ttf"); /*URL to font*/
+}
+body {
+    font-family: "dw1";
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    color: #d7d7d7;
+    text-decoration-color: #ffffff;
+    font-size: 24px;
+    background: #77FF77;
+	image-rendering:optimizeSpeed;
+	image-rendering:-moz-crisp-edges;
+	image-rendering:-o-crisp-edges;
+	image-rendering:-webkit-optimize-contrast;
+	image-rendering:pixelated;
+	image-rendering:optimize-contrast;
+	-ms-interpolation-mode:nearest-neighbor;
+	width:100%;
+}
+#itemDetails{
+    min-width: 50%;
+	position: absolute;/*
+	transform: translate(-50%,0);
+	left:50%;*/
+	min-height:6%;
+	height: 6%;
+	max-height: 6%;
+	bottom:2%;
+	left:2%;
+
+}
+#mapTextBox{
+    min-width: 50%;
+	position: absolute;/*
+	transform: translate(-50%,0);
+	left:50%;*/
+	min-height:6%;
+	height: 6%;
+	max-height: 6%;
+	bottom:2%;
+	right:2%;
+}
+.textBox{
+	position: relative;
+	display: inline-block;
+	background-color:rgba(0,0,0,0.45);
+	border: 10px solid transparent;
+	border-image: url("img/TextboxBorder.png") 5 5 repeat;
+	padding: 6px 6px 6px 6px;
+    text-shadow: 2px 2px #000000;
+    border-radius: 9px;
+	/*border: 2px solid transparent;
+	border-image: url("img/itemSelectedBorder.png") 1 1 repeat;
+	border: 10px solid transparent;
+	border-image: url("img/TextboxBorder.png") 5 5 repeat;
+	border: 16px solid transparent;
+	border-image: url("img/border.png") 4 4 repeat;
+	border: 2px solid transparent;
+	border-image: url("img/scrollBarBorder.png") 1 1 repeat;
+	border: 2px solid transparent;
+	border-image: url("img/scrollBarHandleBorder.png") 1 1 repeat;*/	
+}
+.container{
+	overflow: hidden;
+	position: relative;
+	width:100%;
+	height:100%;
+	margin-top: 2px;
+	margin-left: -8px;
+
+}
+.headerBar{
+	position: relative;
+	height:20px;
+	min-height:20px;
+	max-height:20px;
+	border: 10px solid transparent;
+	border-image: url("img/TextboxBorder.png") 5 5 repeat;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	margin-left:-8px;
+	margin-right:-8px;
+}
+.content{
+	float: left;
+	height: auto;
+	margin-top: 0px;
+	margin-left:6px;
+}
+.content:active{
+	cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+#toolTip{
+	position: fixed;
+	z-index: 130;
+	max-width: 400px;
+}
+/*end of global style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning mapTextBox style*/
+
+.chest{
+	border-color: #00FF00;
+}
+.enemy{
+	border-color: #0000FF;
+}
+.spawn{
+	border-color: #FF0000;
+}
+.mapContainerBackground{
+	position: relative;
+    max-height:200px;
+	min-width: 628px;
+	max-width: 628px;
+	top:6px;
+}
+.mapBackground{
+    background-color: #000000;
+    max-width:100%;
+    max-height:200px;
+
+    display: block;
+	transform: translate(-50%,0);
+	margin-left:50%;
+    margin-bottom: -26px;
+}
+.mapContainerCollision{
+	position: relative;
+	min-height: 500px;
+	max-height: 500px;
+	max-width: 628px;
+}
+.mapContainer{
+	position: relative;
+	display: block;
+	top:22px;
+	max-width: 652px;
+	min-height: 540px;
+    font-size: 12px;
+	/*transform: scale(0.5,0.5);*/
+}
+table{
+	border:solid;
+}
+.itemSpriteMap{
+	height:32px;
+	width:32px;
+}
+.itemDetailsMap{
+	max-width:144px;
+	min-width:144px;
+}
+#mapTitle{
+	margin-left: 216px;
+}
+#mapSelect{
+	max-width:300px;
+}
+#canvasSpan{
+	position: absolute;
+	top:0;
+	left:148px;
+	max-width:332px;
+	min-width:332px;
+}
+#leftSpan{
+	left:0;
+}
+#rightSpan{
+	left:480px;
+}
+.itemBar{
+	position: absolute;
+	max-width:148px;
+	min-width:148px;
+	min-height:500px;
+	max-height:500px;
+}
+/*end of mapTextBox style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning scrollBar style*/
+.scrollBar{
+	background-color: #354b5c;
+    float: right;
+	min-width:14px;
+	max-width:14px;
+	width:14px;
+	min-height:97%;
+	height: 97%;
+	max-height: 97%;
+	margin-right:2px;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+.scrollBarHandle{
+	background-color: #5b707f;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+	margin-top:0;
+	margin-left:2px;
+	min-width:10px;
+	max-width:10px;
+	width:10px;
+	min-height:16px;
+}
+.scrollBarHandle:active{
+	cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+/*end of global style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning of tabLable style*/
+.tabLabelBar{
+	position: relative;
+	margin-top:-46px;
+	left: 6px;
+}
+.tabLabelText{
+	position: relative;
+	top:-6px;
+	padding-right:7px;
+    text-shadow: 2px 2px #000000;
+}
+.tabLabel{
+	display: inline-block;
+    position:relative;
+    border-top:4px solid;
+    border-bottom:4px solid;
+	height:24px;
+	min-height:24px;
+	max-height:24px;
+	padding-left: 6px;
+	margin-right: 26px;
+}
+.tabLabel.labelActive{
+	border-image: url("img/tabnameLabelBorderActive.png") 2 2 repeat;
+    color: #d6d6d6;
+	background-color: #83effe;
+}
+.tabLabel.labelInActive{
+	border-image: url("img/tabnameLabelBorderInActive.png") 2 2 repeat;
+    color: #2a8ed6;
+	background-color: #345e64;
+}
+.tabLabel:before, .tabLabel:after { 
+    display:block;
+    content:".";
+    color:transparent;
+    font-size:0;
+	border:0;
+	position: absolute;
+	top:-4px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height:32px;
+	min-height:32px;
+	max-height:32px;
+	width: 10px;
+	min-width: 10px;
+	max-width: 10px;
+}
+.tabLabel:before {
+	left:-10px;
+}
+.tabLabel:after {
+	right:-10px;
+}
+.tabLabel.labelActive:before {
+	background-image: url("img/tabnameLabelBeforeActive.png");
+}
+.tabLabel.labelInActive:before {
+	background-image: url("img/tabnameLabelBeforeInActive.png");
+}
+.tabLabel.labelActive:after {
+	background-image: url("img/tabnameLabelAfterActive.png");
+}
+.tabLabel.labelInActive:after {
+	background-image: url("img/tabnameLabelAfterInActive.png");
+}
+/*end of tabLable style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning imageless border style*/
+
+.shadowIcon:before, .shadowBottomRight:before, .shadowTopLeft:before {
+    display:block;
+    position:absolute;
+    content:".";
+    color:transparent;
+    font-size:0;
+}
+.shadowIcon {
+	height:24px;
+	min-height:24px;
+	max-height:24px;
+    border-left:2px solid #bdbdbd;
+    border-top:2px solid #bdbdbd;
+    background-color: #949494;
+    position:relative;
+	z-index: 2;
+}
+.shadowIcon:before {
+    border-right:2px solid #424242;
+    border-bottom:2px solid #424242;
+	height:22px;
+	min-height:22px;
+	max-height:22px;
+	min-width: 100%;
+    padding-top:2px;
+    top:-2px;
+    z-index: -1;
+}
+.shadowBottomRight:before, .shadowTopLeft:before {
+    height:100%;
+    width:100%;
+}
+.shadowTopLeft {
+    border-right:2px solid #69869f;
+    border-bottom:2px solid #69869f;
+    position:relative;
+}
+.shadowTopLeft:before {
+    border-left:2px solid #020202;
+    border-top:2px solid #020202;
+    left:0;
+    padding-top:2px;
+    top:-2px;
+}
+.shadowBottomRight {
+    border-left:2px solid #69869f;
+    border-top:2px solid #69869f;
+    position:relative;
+}
+.shadowBottomRight:before {
+    border-right:2px solid #020202;
+    border-bottom:2px solid #020202;
+    right:0;
+    padding-bottom:2px;
+    bottom:-2px;
+}
+/*end of imageless border style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning item list style*/
+#itemList{
+	position: absolute;
+	top:2%;
+	left:2%;
+}
+.itemColor-1{
+	color:#858585;
+}
+.itemColor0{
+	color:#32d6d6;
+}
+.itemColor1{
+	color:#fe3285;
+}
+.itemColor2{
+	color:#32fe32;
+}
+.unbuyableColor{
+	color:#e73129;
+}
+.itemSelectedColor{
+	outline: 2px solid #f04a5d;
+}
+.selectedItem{
+	border: 2px solid transparent;
+	border-image: url("img/itemSelectedBorder.png") 1 1 repeat;
+	margin:-2px;
+}
+.listItem { 
+	position: relative;
+	display: block;
+	height:34px;
+	min-height: 34px;
+	max-height: 34px;
+	width:100%;
+	margin-top: 2px;
+}
+.itemSprite{
+	position: absolute;
+	height:32px;
+	width:32px;
+	left:6px;
+}
+.locationSpan{
+	position: relative;
+	display:block;
+	float:right;
+	right:0;
+	z-index: 3;
+}
+.shopSprite{
+	height:32px;
+	width:32px;
+	margin-right: 2px;
+}
+.effectIcon{
+	height:22px;
+	min-height: 22px;
+	max-height: 22px;
+}
+.itemName{
+	position: absolute;
+	top: -4px;
+	height:34px;
+	min-height: 34px;
+	max-height: 34px;
+	width: 190px;
+	min-width: 190px;
+	max-width: 190px;
+	left: 44px;
+}
+.itemPrice{
+	position: absolute;
+	width: 70px;
+	min-width: 70px;
+	max-width: 70px;
+	left: 238px;
+	text-align: right;
+}
+.listItemActive{
+	position: absolute;
+	left:0;
+	top:-2px;
+	height:100%;
+	width: 100%;
+	min-height:100%;
+	min-width: 100%;
+	max-height:100%;
+	max-width: 100%;
+    border-left:2px solid #afafaf;
+    border-top:2px solid #afafaf;
+	background-color:rgba(255,255,255,0.07);
+}
+.listItemActive:before{
+    border-right:2px solid #121212;
+    border-bottom:2px solid #121212;
+}
+.itemListLabel{
+	position: relative;
+	bottom:-8px;
+	left: 12px;
+	height:14px;
+	min-height:14px;
+	max-height:14px;
+}
+.locationDiv{
+	position: absolute;
+	width: 190px;
+	min-width: 190px;
+	max-width: 190px;
+	left: 650px;
+}
+.effectDiv{
+	position: absolute;
+	width: 350px;
+	min-width: 350px;
+	max-width: 350px;
+	left: 320px;
+	top:7px;
+}
+.effectSpan{
+	position: relative;
+	display:block;
+	float:left;
+	margin-right: 4px;
+	min-width:22px;
+	text-align: center;
+}
+.toolTip{
+	position:absolute;
+	left:100%;
+	top:100%;
+	width: 250px;
+	min-width: 250px;
+	max-width: 250px;
+}
+.locationSpan .toolTip, .effectSpan .toolTip, .listItem .listItemActive{
+	display:none;
+}
+.locationSpan:hover .toolTip, .effectSpan:hover .toolTip, .listItem:hover .listItemActive{
+	display:inline-block;
+}
+/*end of item list style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning of shared style*/
+body { 
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+/*end of shared style*/
+/*--------------------------------------------------------------------------------------------------*/
+/*beginning basic attached classes style*/
+.hidden{
+	display:none !important;
+	visibility:hidden !important;
+}
+.clickable{
+	cursor: pointer;
+}
+
+
+
+.dropDownContainer{
+	position: fixed;
+	min-width: 628px;
+	z-index: 999;
+	max-width: 628px;
+	min-height: 22px;
+	max-height: 22px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+    font-size: 12px;
+}
+
+.dropDownContent{
+	width: 628px;
+	position: absolute;
+	background-color: rgb(42, 142, 214);
+}
+
+.dropDownOption{
+	
+}
