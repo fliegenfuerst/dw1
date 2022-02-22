@@ -373,7 +373,7 @@ data.push({
 data.push({
    "map": "TROP06",
    "item": "Auto Pilot",
-   "chance": "30%",
+   "chance": "20%",
    "LocationX": "49",
    "LocationY": "18"
 });
