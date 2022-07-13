@@ -627,7 +627,7 @@ const digimon=[
 		maps:["TWNA02"],
 		recruitMap:"TROP03",
 		region:"Tropical Jungle",
-		trigger:"Wait until the 15th of the month",
+		trigger:"10PP & wait until the 15th of the month",
 		location:"Exit the toilet screen to the right",
 		requirement:"On day 15 of every year you can collect a Rain Plant near the meat field. Talk to Tanemon afterwards. Once you did that you'll find a small plant in the target screen.<br />Interact with the plant and use the Rain Plant. Vegiemon will appear and ask a question, he'll join the town regardless of your answer.",
 		unlocks:"upgrades meat farm to yield sirloin, sells you Supercarrot and Hawk Raddish",
