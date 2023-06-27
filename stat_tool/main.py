@@ -20,6 +20,13 @@ def make_size_directories(x, y):
         print(e)
 
 
+def make_size_directories_entries(x, y):
+    try:
+        make_directory(f'result_entries/{f"{x}x{y}"}')
+    except FileExistsError as e:
+        print(e)
+
+
 def add_zeros(number, zeros):
     num_str = ('0' * zeros + str(number))
     return num_str[len(num_str)-3:]
@@ -39,16 +46,45 @@ def resize_item_sprites():
         count += 1
         im = source.copy()
         im.save(f'result/16x16/{name}_{w}x{h}.png')
-        im.resize((w * 2, h * 2), Image.NEAREST).save(f'result/32x32/{name}_{w * 2}x{h * 2}.png')
+        im.resize((w * 2, h * 2), Image.NEAREST).save(f'result_entries/32x32/{name}_{w * 2}x{h * 2}.png')
         im = source.copy()
-        im.resize((w * 3, h * 3), Image.NEAREST).save(f'result/48x48/{name}_{w * 3}x{h * 3}.png')
+        im.resize((w * 3, h * 3), Image.NEAREST).save(f'result_entries/48x48/{name}_{w * 3}x{h * 3}.png')
         im = source.copy()
-        im.resize((w * 4, h * 4), Image.NEAREST).save(f'result/64x64/{name}_{w * 4}x{h * 4}.png')
+        im.resize((w * 4, h * 4), Image.NEAREST).save(f'result_entries/64x64/{name}_{w * 4}x{h * 4}.png')
         im = source.copy()
-        im.resize((w * 8, h * 8), Image.NEAREST).save(f'result/128x128/{name}_{w * 8}x{h * 8}.png')
+        im.resize((w * 8, h * 8), Image.NEAREST).save(f'result_entries/128x128/{name}_{w * 8}x{h * 8}.png')
         im = source.copy()
-        im.resize((w * 16, h * 16), Image.NEAREST).save(f'result/256x256/{name}_{w * 16}x{h * 16}.png')
+        im.resize((w * 16, h * 16), Image.NEAREST).save(f'result_entries/256x256/{name}_{w * 16}x{h * 16}.png')
 
+
+def get_resized_sprites_from_entrytool_spritesheet():
+    spritesheet = Image.open('digisprites_entries.png')
+    count = 0
+    make_size_directories(16, 16)
+    make_size_directories(32, 32)
+    make_size_directories(48, 48)
+    make_size_directories(64, 64)
+    make_size_directories(128, 128)
+    make_size_directories(256, 256)
+    background = Image.open('bg_box.png')
+    for name in name_list:
+        source = spritesheet.copy()
+        source = source.crop((32 * count, 0, 32 * count + 16, 0 + 16))
+        count += 2
+        bg = background.copy()
+        bg.paste(source, (1, 1), source)
+        im = bg.copy()
+        im.save(f'result/16x16/{name}_16x16.png')
+        im.resize((32, 32), Image.NEAREST).save(f'result/32x32/{name}_32x32.png')
+        im = bg.copy()
+        im.resize((48, 48), Image.NEAREST).save(f'result/48x48/{name}_48x48.png')
+        im = bg.copy()
+        im.resize((64, 64), Image.NEAREST).save(f'result/64x64/{name}_64x64.png')
+        im = bg.copy()
+        im.resize((128, 128), Image.NEAREST).save(f'result/128x128/{name}_128x128.png')
+        im = bg.copy()
+        im.resize((256, 256), Image.NEAREST).save(f'result/256x256/{name}_256x256.png')
+    
 
 def resize_digi_sprites():
     spritesheet = Image.open('digisprites.png')
