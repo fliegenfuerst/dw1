@@ -162,3 +162,53 @@ if __name__ == '__main__':
     for move in moves:
         movs.append(move['name'])
     print('"'+'", "'.join(movs)+'"')
+'''
+var sprites = [];
+let canvas = document.getElementById('canvas');
+if (ctx.getContext) {
+	ctx = canvas.getContext('2d');
+	for(let digi of digiStats){
+		let backgroundImg = new Image();
+		let spriteImg = new Image();
+
+		backgroundImg.onload = function () {
+			ctx.drawImage(backgroundImg, 0, 0);
+		};
+		spriteImg.onload = function () {
+			ctx.drawImage(spriteImg, 0, 0, 16, 16, 1, 1, 16, 16);
+		};
+		backgroundImg.src = 'https://fliegenfuerst.github.io/dw1/stat_tool/bg_box.png';
+		spriteImg.src = 'https://fliegenfuerst.github.io/dmw/tournament/1.4/css/digisprites.png';
+		sprites.push(new Sprite(digi.name, await new Promise(res => canvas.toBlob(res))));
+	}
+}
+
+
+function downloadBlob(blob, filename){
+	let link = document.createElement('a');
+	link.style.display = 'none';
+	document.body.appendChild(link);
+	link.href = URL.createObjectURL(blob);
+	link.download = filename;
+	link.click();
+	document.body.removeChild(link);
+}
+
+class Sprite(){
+
+	constructor(name, blob){
+		this.saveName = name;
+		this.blob = blob;
+	}
+}
+
+	
+}
+var zip = new JSZip();
+
+for(let sprite of sprites){
+	zip.file(sprite.saveName, sprite.blob, {binary: true};
+}
+
+downloadBlob(zip, "sprites.zip");
+'''
